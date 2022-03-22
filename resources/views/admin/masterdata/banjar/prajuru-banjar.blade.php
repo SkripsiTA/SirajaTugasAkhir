@@ -127,8 +127,8 @@
                                                         <td>{{ showDateTime($data->tanggal_akhir_menjabat, 'd F Y') }}</td>
                                                         <td class="text-center">
                                                             <a href="#" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
-                                                            <a href="#" class="btn btn-sm btn-flat btn-warning" data-toggle="modal" data-target="#editPrajuruDesa{{ $data->prajuru_banjar_adat_id }}"><i class="fa fa-edit"></i></a>
-                                                            <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#deletePrajuruDesa{{ $data->prajuru_banjar_adat_id }}"><i class="fa fa-trash"></i></button>
+                                                            <a href="#" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
+                                                            <button class="btn btn-sm btn-flat btn-danger"><i class="fa fa-trash"></i></button>
                                                         </td>
                                                     </tr>
                                                     @endif

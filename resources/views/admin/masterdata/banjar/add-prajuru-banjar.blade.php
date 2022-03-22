@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('add-prajuru-banjar-adat') }}" method="POST">
+                <form action="{{ route('create-prajuru-banjar-adat') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="card-body">
                       <h6 class="heading-small text-muted mb-4">Data Diri</h6>
@@ -115,8 +115,8 @@
                                     <label class="form-control-label" for="input-email">Status<i class="text-danger text-sm text-bold">*</i></label>
                                     <select name="status_prajuru_banjar" class="form-control" id="status_prajuru_banjar" required>
                                         <option value="">-- Pilih Status Prajuru --</option>
-                                        <option value="aktif" <?= $prajurubanjar->status_prajuru_desa_adat === 'aktif' ? 'selected' : '' ?>>Aktif</option>
-                                        <option value="tidak aktif" <?= $prajurubanjar->status_prajuru_desa_adat === 'tidak aktif' ? 'selected' : '' ?>>Tidak Aktif</option>
+                                        <option value="aktif" <?= $prajurubanjar->status_prajuru_banjar_adat === 'aktif' ? 'selected' : '' ?>>Aktif</option>
+                                        <option value="tidak aktif" <?= $prajurubanjar->status_prajuru_banjar_adat === 'tidak aktif' ? 'selected' : '' ?>>Tidak Aktif</option>
                                     </select>
                                 </div>
                               </div>
