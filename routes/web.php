@@ -100,12 +100,13 @@ Route::post('/prajuru/desaadat/add', [PrajuruDesaController::class, 'store'])->n
 Route::get('/prajuru/desaadat/edit/{id}', [PrajuruDesaController::class, 'edit'])->name('edit-prajuru-desa-adat');
 Route::post('/prajuru/desaadat/update/{id}', [PrajuruDesaController::class, 'update'])->name('update-prajuru-desa-adat');
 route::get('/prajuru/desaadat/nonaktif/{id}', [PrajuruDesaController::class, 'nonaktif'])->name('nonaktif-prajuru-desa-adat');
+Route::get('/prajuru/desaadat/edit/{id}', [PrajuruDesaController::class, 'edit'])->name('edit-prajuru-desa-adat');
+Route::get('/prajuru/desaadat/detail/{id}', [PrajuruDesaController::class, 'detail'])->name('detail-prajuru-desa-adat');
 
 //Prajuru Banjar Adat
 Route::get('/prajuru/banjaradat', [PrajuruBanjarController::class, 'index'])->name('prajuru-banjar-adat');
-Route::get('/prajuru/banjaradat/create', [PrajuruBanjarController::class, 'create'])->name('create-prajuru-banjar-adat');
-Route::post('/prajuru/banjaradat/create/getpassword', [PrajuruBanjarController::class, 'getpassword'])->name('get-password');
-Route::post('/prajuru/banjaradat/add', [PrajuruBanjarController::class, 'store'])->name('add-prajuru-banjar-adat');
+Route::get('/prajuru/banjaradat/create', [PrajuruBanjarController::class, 'create'])->name('add-prajuru-banjar-adat');
+Route::post('/prajuru/banjaradat/add', [PrajuruBanjarController::class, 'store'])->name('create-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/edit/{id}', [PrajuruBanjarController::class, 'edit'])->name('edit-prajuru-banjar-adat');
 Route::post('/prajuru/banjaradat/update/{id}', [PrajuruBanjarController::class, 'update'])->name('update-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/delete/{id}', [PrajuruBanjarController::class, 'destroy'])->name('delete-prajuru-banjar-adat');

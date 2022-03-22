@@ -140,6 +140,13 @@ class PrajuruDesaController extends Controller
 
         return redirect('/prajuru/desaadat')->with('success', 'Data berhasil dinonaktifkan!');
     }
+
+    public function detail($id)
+    {
+        $detailprajurudesa = PrajuruDesaAdat::with(['desaadat','kramamipil'])->findOrFail($id);
+
+        return view('admin.masterdata.pegawai.detail-prajuru-desa', compact('detailprajurudesa'));
+    }
     public function destroy($id)
     {
         // $prajurudesa = PrajuruDesaAdat::findOrFail($id);

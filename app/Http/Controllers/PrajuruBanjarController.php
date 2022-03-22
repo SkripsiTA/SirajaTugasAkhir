@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\KramaMipil;
 use Illuminate\Http\Request;
 use App\Models\PrajuruBanjarAdat;
 use Illuminate\Support\Facades\Auth;
+use App\Models\BanjarAdat;
 
 class PrajuruBanjarController extends Controller
 {
@@ -29,7 +32,12 @@ class PrajuruBanjarController extends Controller
      */
     public function create()
     {
-        //
+        $prajurubanjar = PrajuruBanjarAdat::first();
+        $banjaradat = BanjarAdat::with('desaadat')->get();
+        $kramamipil = KramaMipil::with(['banjaradat', 'cacahkramamipil'])->get();
+        $akun = User::with(['penduduk','desaadat'])->first();
+
+        return view('admin.masterdata.banjar.add-prajuru-banjar', compact('prajurubanjar', 'banjaradat', 'kramamipil', 'akun'));
     }
 
     /**

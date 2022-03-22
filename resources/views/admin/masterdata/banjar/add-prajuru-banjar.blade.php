@@ -77,11 +77,11 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Edit Prajuru Desa Adat</h3>
+                            <h3 class="mb-0">Tambah Prajuru Banjar Adat</h3>
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('update-prajuru-desa-adat', $editprajurudesa->prajuru_desa_adat_id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('add-prajuru-banjar-adat') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="card-body">
                       <h6 class="heading-small text-muted mb-4">Data Diri</h6>
@@ -91,34 +91,43 @@
                                   <div class="form-group">
                                       <label class="form-control-label" for="input-email">NIK dan Nama Lengkap<i class="text-danger text-sm text-bold">*</i></label>
                                       <select name="kramamipil_id" class="kramamipil_id form-control" id="kramamipil_id" style="height: 100%" required>
-                                        <option value="{{ $editprajurudesa->krama_mipil_id }}">{{ $editprajurudesa->kramamipil->cacahkramamipil->penduduk->nik }} - {{ $editprajurudesa->kramamipil->cacahkramamipil->penduduk->nama }}</option>
-                                        {{--  @foreach ($editprajurudesa as $data)
-                                            <option value="{{ $data->krama_mipil_id }}" data-id="{{ $data->kramamipil->cacahkramamipil->penduduk->nik }}">{{ $data->kramamipil->cacahkramamipil->penduduk->nik }} - {{ $data->kramamipil->cacahkramamipil->penduduk->nama }}</option>
-                                        @endforeach  --}}
+                                        <option value="">-- Pilih Krama --</option>
+                                        @foreach ($kramamipil as $data)
+                                            <option value="{{ $data->krama_mipil_id }}" data-id="{{ $data->cacahkramamipil->penduduk->nik }}">{{ $data->cacahkramamipil->penduduk->nik }} - {{ $data->cacahkramamipil->penduduk->nama }}</option>
+                                        @endforeach
                                       </select>
                                   </div>
                               </div>
-                              <div class="col-lg-6">
+                              <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Jabatan<i class="text-danger text-sm text-bold">*</i></label>
                                     <select name="nama_jabatan" class="form-control" id="nama_jabatan" required>
-                                        {{--  <option value="{{ $editprajurudesa->jabatan }}">{{ $editprajurudesa->jabatan }}</option>  --}}
-                                        <option value="bendesa" <?= $editprajurudesa->jabatan === 'bendesa' ? 'selected' : '' ?>>Bendesa</option>
-                                        <option value="pangliman" <?= $editprajurudesa->jabatan === 'pangliman' ? 'selected' : '' ?>>Pangliman</option>
-                                        <option value="penyarikan" <?= $editprajurudesa->jabatan === 'penyarikan' ? 'selected' : '' ?>>Penyarikan</option>
-                                        <option value="patengen" <?= $editprajurudesa->jabatan === 'patengen' ? 'selected' : '' ?>>Patengen</option>
-                                        <option value="kasinoman" <?= $editprajurudesa->jabatan === 'kasinoman' ? 'selected' : '' ?>>Kasinoman</option>
-                                        <option value="baga palemahan" <?= $editprajurudesa->jabatan === 'baga palemahan' ? 'selected' : '' ?>>Baga Palemahan</option>
+                                        <option value="">-- Pilih Jabatan --</option>
+                                        <option value="kelihan banjar" <?= $prajurubanjar->jabatan === 'kelihan banjar' ? 'selected' : '' ?>>Kelihan Banjar</option>
+                                        <option value="pangliman" <?= $prajurubanjar->jabatan === 'pangliman' ? 'selected' : '' ?>>Pangliman</option>
+                                        <option value="penyarikan" <?= $prajurubanjar->jabatan === 'penyarikan' ? 'selected' : '' ?>>Penyarikan</option>
+                                        <option value="patengen" <?= $prajurubanjar->jabatan === 'patengen' ? 'selected' : '' ?>>Patengen</option>
                                     </select>
                                 </div>
                               </div>
-                              <div class="col-lg-6">
+                              <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Status<i class="text-danger text-sm text-bold">*</i></label>
-                                    <select name="status_prajuru_desa" class="form-control" id="status_prajuru_desa" required>
-                                        {{--  <option value="{{ $editprajurudesa->status_prajuru_desa_adat }}">{{ $editprajurudesa->status_prajuru_desa_adat }}</option>  --}}
-                                        <option value="aktif" <?= $editprajurudesa->status_prajuru_desa_adat === 'aktif' ? 'selected' : '' ?>>Aktif</option>
-                                        <option value="tidak aktif" <?= $editprajurudesa->status_prajuru_desa_adat === 'tidak aktif' ? 'selected' : '' ?>>Tidak Aktif</option>
+                                    <select name="status_prajuru_banjar" class="form-control" id="status_prajuru_banjar" required>
+                                        <option value="">-- Pilih Status Prajuru --</option>
+                                        <option value="aktif" <?= $prajurubanjar->status_prajuru_desa_adat === 'aktif' ? 'selected' : '' ?>>Aktif</option>
+                                        <option value="tidak aktif" <?= $prajurubanjar->status_prajuru_desa_adat === 'tidak aktif' ? 'selected' : '' ?>>Tidak Aktif</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Banjar Adat<i class="text-danger text-sm text-bold">*</i></label>
+                                    <select name="banjar_adat" class="form-control" id="banjar_adat" required>
+                                        <option value="">-- Pilih Banjar Adat --</option>
+                                        @foreach ($banjaradat as $data)
+                                            <option value="{{ $data->banjar_adat_id }}">{{ $data->nama_banjar_adat }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                               </div>
@@ -131,7 +140,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                                 </div>
-                                                <input class="form-control" name="masa_mulai" placeholder="Periode Mulai" type="text" value="{{ $editprajurudesa->tanggal_mulai_menjabat }}">
+                                                <input class="form-control" name="masa_mulai" placeholder="Periode Mulai" type="text" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +150,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                                 </div>
-                                                <input class="form-control" name="masa_berakhir" placeholder="Periode Berakhir" type="text" value="{{ $editprajurudesa->tanggal_akhir_menjabat }}">
+                                                <input class="form-control" name="masa_berakhir" placeholder="Periode Berakhir" type="text" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -156,30 +165,20 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-username">Email<i class="text-danger text-sm text-bold">*</i></label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ $editprajurudesa->desaadat->user[0]->email }}" required>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Password</label>
-                                    <input type="password" name="password" class="password form-control" id="password" placeholder="Password" value="{{ $editprajurudesa->desaadat->user[0]->password }}" readonly>
+                                    <input type="password" name="password" class="password form-control" id="password" placeholder="Password" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-email">Status<i class="text-danger text-sm text-bold">*</i></label>
-                                    <select name="role_prajuru" class="form-control" id="role_prajuru" required>
-                                        {{--  <option value="{{ $editprajurudesa->desaadat->user[0]->role }}" selected>{{ $editprajurudesa->desaadat->user[0]->role }}</option>  --}}
-                                        <option value="Bendesa" <?= $editprajurudesa->desaadat->user[0]->role === 'Bendesa' ? 'selected' : '' ?>>Bendesa</option>
-                                        <option value="Admin" <?= $editprajurudesa->desaadat->user[0]->role === 'Admin' ? 'selected' : '' ?>>Admin</option>
-                                    </select>
-                                </div>
-                              </div>
                         </div>
                       </div>
                     </div>
                     <div class="card-footer text-right">
-                        <a href="{{ route('prajuru-desa-adat') }}" type="button" class="btn btn-secondary">Batal</a>
+                        <a href="{{ route('prajuru-banjar-adat') }}" type="button" class="btn btn-secondary">Batal</a>
                         <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </form>

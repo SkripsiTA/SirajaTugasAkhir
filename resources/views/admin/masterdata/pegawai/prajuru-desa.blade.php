@@ -123,11 +123,11 @@
                                                         <td>{{ showDateTime($data->tanggal_akhir_menjabat, 'd F Y') }}</td>
                                                         <td class="text-center">
                                                             @if($data->status_prajuru_desa_adat == 'aktif')
-                                                                <a href="#" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
+                                                                <a href="{{ route('detail-prajuru-desa-adat', $data->prajuru_desa_adat_id) }}" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
                                                                 <a href="{{ route('edit-prajuru-desa-adat', $data->prajuru_desa_adat_id) }}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
                                                                 <button type="submit" class="btn btn-sm btn-flat btn-danger nonaktif" data-id="{{ $data->prajuru_desa_adat_id }}"><i class="fa fa-toggle-off"></i></button>
                                                             @else
-                                                                <a href="#" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
+                                                                <a href="{{ route('detail-prajuru-desa-adat', $data->prajuru_desa_adat_id) }}" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
                                                             @endif
 
                                                         </td>

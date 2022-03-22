@@ -78,7 +78,7 @@
                             </form>
                         </div>
                         <div class="float-right">
-                            <a href="{{ route('create-prajuru-banjar-adat') }}" type="button" class="btn btn-md btn-primary"><i class="fa fa-plus"></i>
+                            <a href="{{ route('add-prajuru-banjar-adat') }}" type="button" class="btn btn-md btn-primary"><i class="fa fa-plus"></i>
                             Tambah</a>
                         </div>
                     </div>
