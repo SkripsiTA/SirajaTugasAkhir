@@ -60,6 +60,7 @@ class PrajuruBanjarController extends Controller
         $prajurubanjar->tanggal_akhir_menjabat = $request->masa_berakhir;
         $prajurubanjar->save();
 
+
         // dd($prajurudesaakun);
         $prajurubanjarakun = new User;
         $prajurubanjarakun->desa_adat_id = Auth::user()->desa_adat_id;
@@ -92,7 +93,11 @@ class PrajuruBanjarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editprajurubanjar = PrajuruBanjarAdat::with(['banjaradat','kramamipil'])->findOrFail($id);
+        // dd($editprajurubanjar->banjaradat);
+        $banjaradat = BanjarAdat::with('desaadat')->where('desa_adat_id', Auth::user()->desa_adat_id)->get();
+
+        return view('admin.masterdata.banjar.edit-prajuru-banjar', compact('editprajurubanjar', 'banjaradat'));
     }
 
     /**
@@ -104,15 +109,44 @@ class PrajuruBanjarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateprajurubanjar = PrajuruBanjarAdat::with(['banjaradat','kramamipil'])->findOrFail($id);
+        $updateprajurubanjar->banjar_adat_id = $request->banjar_adat;
+        $updateprajurubanjar->krama_mipil_id = $request->kramamipil_id;
+        $updateprajurubanjar->jabatan = $request->nama_jabatan;
+        $updateprajurubanjar->status_prajuru_banjar_adat = $request->status_prajuru_banjar;
+        $updateprajurubanjar->tanggal_mulai_menjabat = $request->masa_mulai;
+        $updateprajurubanjar->tanggal_akhir_menjabat = $request->masa_berakhir;
+        $updateprajurubanjar->save();
+
+        $updateprajurubanjarakun = User::findOrFail($updateprajurubanjar->kramamipil->cacahkramamipil->penduduk->user[0]->user_id);
+        // dd($updateprajurubanjarakun);
+        $updateprajurubanjarakun->desa_adat_id = Auth::user()->desa_adat_id;
+        $pendudukid = KramaMipil::with('cacahkramamipil.penduduk')->findOrFail($request->kramamipil_id);
+        $updateprajurubanjarakun->penduduk_id = $pendudukid->cacahkramamipil->penduduk->penduduk_id;
+        $updateprajurubanjarakun->email = $request->email;
+        $updateprajurubanjarakun->save();
+        // dd($updateprajurubanjarakun);
+
+        return redirect()->route('prajuru-banjar-adat')->with('success', 'Data berhasil diupdate!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function nonaktif(Request $request, $id)
+    {
+        $updateprajurubanjar = PrajuruBanjarAdat::with(['banjaradat','kramamipil'])->findOrFail($id);
+        $updateprajurubanjar->status_prajuru_banjar_adat = 'tidak aktif';
+        $updateprajurubanjar->save();
+        // dd($updateprajurudesa);
+
+        return redirect()->route('prajuru-banjar-adat')->with('success', 'Data berhasil dinonaktifkan!');
+    }
+
+    public function detail($id)
+    {
+        $detailprajurubanjar = PrajuruBanjarAdat::with(['banjaradat','kramamipil'])->findOrFail($id);
+
+        return view('admin.masterdata.banjar.detail-prajuru-banjar', compact('detailprajurubanjar'));
+    }
+
     public function destroy($id)
     {
         //

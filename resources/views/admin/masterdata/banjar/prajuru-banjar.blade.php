@@ -116,7 +116,6 @@
                                                 @endphp
                                                 @foreach ($prajurubanjar as $data)
                                                     @if($data->banjaradat->desaadat->desa_adat_id == Auth::user()->desa_adat_id)
-                                                    {{--  @continue  --}}
                                                     <tr>
                                                         <td> {{ $i++ }} </td>
                                                         <td> {{ $data->kramamipil->cacahkramamipil->penduduk->nama }} </td>
@@ -126,9 +125,13 @@
                                                         <td>{{ showDateTime($data->tanggal_mulai_menjabat, 'd F Y') }}</td>
                                                         <td>{{ showDateTime($data->tanggal_akhir_menjabat, 'd F Y') }}</td>
                                                         <td class="text-center">
-                                                            <a href="#" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
-                                                            <a href="#" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
-                                                            <button class="btn btn-sm btn-flat btn-danger"><i class="fa fa-trash"></i></button>
+                                                            @if($data->status_prajuru_banjar_adat == 'aktif')
+                                                                <a href="{{ route('detail-prajuru-banjar-adat', $data->prajuru_banjar_adat_id) }}" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
+                                                                <a href="{{ route('edit-prajuru-banjar-adat', $data->prajuru_banjar_adat_id) }}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
+                                                                <button type="submit" class="btn btn-sm btn-flat btn-danger nonaktif" data-id="{{ $data->prajuru_banjar_adat_id }}"><i class="fa fa-toggle-off"></i></button>
+                                                            @else
+                                                                <a href="{{ route('detail-prajuru-banjar-adat', $data->prajuru_banjar_adat_id) }}" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     @endif
@@ -190,6 +193,35 @@
 
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script>
+    $('.nonaktif').click(function(e) {
+        e.preventDefault();
+        var prajurubanjarid = $(this).attr('data-id');
+
+            swal({
+                title: "Apakah yakin menonaktifkan ?",
+                text: "Data prajuru tidak dapat diubah lagi!",
+                icon: "warning",
+                buttons: ["Batal", "Nonaktifkan"],
+                dangerMode: true,
+            })
+            .then((isConfirm) => {
+                if (isConfirm) {
+                    window.location ="/prajuru/banjaradat/nonaktif/"+prajurubanjarid+""
+                    swal("Berhasil! Data prajuru desa telah dinonaktifkan!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Batal! Data prajuru desa aktif!", {
+                        icon: "error",
+                    });
+                }
+            });
+    });
+
+  </script>
 
   <!-- Argon Scripts -->
   <!-- Core -->

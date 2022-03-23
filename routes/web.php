@@ -37,7 +37,7 @@ Route::post('/loginsession', [AuthController::class, 'loginsession'])->name('log
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Middleware Admin
-Route::group(['middleware' => ['auth','cek_login:Bendesa,Admin']], function () {
+Route::group(['middleware' => ['auth','cek_login:Bendesa, Admin']], function () {
     route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 });
 
@@ -99,8 +99,7 @@ Route::post('/prajuru/desaadat/create/getpassword', [PendaftaranDesaController::
 Route::post('/prajuru/desaadat/add', [PrajuruDesaController::class, 'store'])->name('add-prajuru-desa-adat');
 Route::get('/prajuru/desaadat/edit/{id}', [PrajuruDesaController::class, 'edit'])->name('edit-prajuru-desa-adat');
 Route::post('/prajuru/desaadat/update/{id}', [PrajuruDesaController::class, 'update'])->name('update-prajuru-desa-adat');
-route::get('/prajuru/desaadat/nonaktif/{id}', [PrajuruDesaController::class, 'nonaktif'])->name('nonaktif-prajuru-desa-adat');
-Route::get('/prajuru/desaadat/edit/{id}', [PrajuruDesaController::class, 'edit'])->name('edit-prajuru-desa-adat');
+Route::get('/prajuru/desaadat/nonaktif/{id}', [PrajuruDesaController::class, 'nonaktif'])->name('nonaktif-prajuru-desa-adat');
 Route::get('/prajuru/desaadat/detail/{id}', [PrajuruDesaController::class, 'detail'])->name('detail-prajuru-desa-adat');
 
 //Prajuru Banjar Adat
@@ -109,7 +108,8 @@ Route::get('/prajuru/banjaradat/create', [PrajuruBanjarController::class, 'creat
 Route::post('/prajuru/banjaradat/add', [PrajuruBanjarController::class, 'store'])->name('create-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/edit/{id}', [PrajuruBanjarController::class, 'edit'])->name('edit-prajuru-banjar-adat');
 Route::post('/prajuru/banjaradat/update/{id}', [PrajuruBanjarController::class, 'update'])->name('update-prajuru-banjar-adat');
-Route::get('/prajuru/banjaradat/delete/{id}', [PrajuruBanjarController::class, 'destroy'])->name('delete-prajuru-banjar-adat');
+Route::get('/prajuru/banjaradat/nonaktif/{id}', [PrajuruBanjarController::class, 'nonaktif'])->name('nonaktif-prajuru-banjar-adat');
+Route::get('/prajuru/banjaradat/detail/{id}', [PrajuruBanjarController::class, 'detail'])->name('detail-prajuru-banjar-adat');
 
 
 //Profiler
