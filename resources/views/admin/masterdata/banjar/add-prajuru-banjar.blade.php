@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('create-prajuru-banjar-adat') }}" method="POST">
+                <form action="{{ route('add-prajuru-banjar-adat') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="card-body">
                       <h6 class="heading-small text-muted mb-4">Data Diri</h6>

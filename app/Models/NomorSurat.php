@@ -15,4 +15,9 @@ class NomorSurat extends Model
     protected $fillable = [
         'kode_nomor_surat', 'keterangan',
     ];
+
+    public function suratkeluar()
+    {
+        return $this->hasMany(SuratKeluar::class);
+    }
 }

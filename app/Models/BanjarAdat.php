@@ -35,4 +35,9 @@ class BanjarAdat extends Model
     {
         return $this->hasMany(PrajuruBanjarAdat::class);
     }
+
+    public function tembusansuratkeluar()
+    {
+        return $this->hasMany(TembusanSuratKeluar::class);
+    }
 }

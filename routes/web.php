@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PendaftaranDesaController;
 use App\Http\Controllers\PrajuruDesaController;
 use App\Http\Controllers\PrajuruBanjarController;
+use App\Http\Controllers\SuratKeluarController;
+use App\Http\Controllers\SuratKeluarPanitiaController;
 use App\Http\Controllers\DusunController;
 
 
@@ -104,16 +106,22 @@ Route::get('/prajuru/desaadat/detail/{id}', [PrajuruDesaController::class, 'deta
 
 //Prajuru Banjar Adat
 Route::get('/prajuru/banjaradat', [PrajuruBanjarController::class, 'index'])->name('prajuru-banjar-adat');
-Route::get('/prajuru/banjaradat/create', [PrajuruBanjarController::class, 'create'])->name('add-prajuru-banjar-adat');
-Route::post('/prajuru/banjaradat/add', [PrajuruBanjarController::class, 'store'])->name('create-prajuru-banjar-adat');
+Route::get('/prajuru/banjaradat/create', [PrajuruBanjarController::class, 'create'])->name('create-prajuru-banjar-adat');
+Route::post('/prajuru/banjaradat/add', [PrajuruBanjarController::class, 'store'])->name('add-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/edit/{id}', [PrajuruBanjarController::class, 'edit'])->name('edit-prajuru-banjar-adat');
 Route::post('/prajuru/banjaradat/update/{id}', [PrajuruBanjarController::class, 'update'])->name('update-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/nonaktif/{id}', [PrajuruBanjarController::class, 'nonaktif'])->name('nonaktif-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/detail/{id}', [PrajuruBanjarController::class, 'detail'])->name('detail-prajuru-banjar-adat');
 
-
-//Profiler
+//Profile
 Route::get('/profile/show/{id}', [UserController::class, 'show'])->name('show-profile');
 Route::get('/profile/edit/{id}', [UserController::class, 'edit'])->name('edit-profile');
 Route::post('profile/crop', [UserController::class, 'crop'])->name('crop-picture');
 Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('update-profile');
+
+//Surat Keluar
+Route::get('/surat/keluar', [SuratKeluarController::class, 'index'])->name('dashboard-surat-keluar');
+Route::get('/surat/keluar/panitia', [SuratKeluarPanitiaController::class, 'index'])->name('home-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/create', [SuratKeluarPanitiaController::class, 'create'])->name('create-surat-keluar-panitia');
+Route::post('/surat/keluar/panitia/add', [SuratKeluarPanitiaController::class, 'store'])->name('add-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/detail/{id}', [SuratKeluarPanitiaController::class, 'show'])->name('detail-surat-keluar-panitia');

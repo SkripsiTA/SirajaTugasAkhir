@@ -132,7 +132,7 @@ class UserController extends Controller
 
         }
 
-        return redirect()->route('show-profile', $profile->user_id)->with(['toast_success' => 'Data Berhasil Diupdate!']);;
+        return redirect()->route('show-profile', $profile->user_id)->with(['toast_success' => 'Data Berhasil Diupdate!']);
     }
 
     /**

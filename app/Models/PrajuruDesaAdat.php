@@ -27,4 +27,14 @@ class PrajuruDesaAdat extends Model
     {
         return $this->belongsTo(KramaMipil::class, 'krama_mipil_id', 'krama_mipil_id');
     }
+
+    public function detailsuratkeluar()
+    {
+        return $this->hasMany(DetailSuratKeluar::class);
+    }
+
+    public function detailsuratkeluarpanitia()
+    {
+        return $this->hasMany(DetailSuratKeluarPanitia::class);
+    }
 }

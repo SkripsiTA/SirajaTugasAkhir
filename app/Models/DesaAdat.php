@@ -37,4 +37,14 @@ class DesaAdat extends Model
     {
         return $this->hasMany(BanjarAdat::class);
     }
+
+    public function suratkeluar()
+    {
+        return $this->hasMany(SuratKeluar::class);
+    }
+
+    public function tembusansuratkeluar()
+    {
+        return $this->hasMany(TembusanSuratKeluar::class);
+    }
 }

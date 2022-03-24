@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="map.html">
+                    <a class="nav-link" href="{{ route('dashboard-surat-keluar') }}">
                     <i class="ni ni-send"></i>
                     <span class="nav-link-text">Surat Keluar</span>
                     </a>

@@ -35,4 +35,9 @@ class KramaMipil extends Model
     {
         return $this->hasOne(PrajuruBanjarAdat::class);
     }
+
+    public function detailsuratkeluarpanitia()
+    {
+        return $this->hasMany(DetailSuratKeluarPanitia::class);
+    }
 }
