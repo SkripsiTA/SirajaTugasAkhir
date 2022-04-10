@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/brand/mail.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/brand/logo.png')}}">
     <title>
     Sistem Surat Menyurat
     </title>
@@ -48,19 +48,11 @@
     <!-- CSS Files -->
     <link href="{{ asset('asset/css/argon-design-system.min.css?v=1.2.2') }}" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-    {{--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">  --}}
-    {{--  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>  --}}
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link type="text/css" href="{{ asset('assets/dist/css/select2.min.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/dist/js/select2.min.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/select2/select2/master/dist/js/select2.js"></script>
+    <link href="https://rawgit.com/select2/select2/master/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
         section {
@@ -116,7 +108,7 @@
                             <div class="text-center text-muted mb-4">
                                 <div class="col-sm-10 col-10 mx-md-auto">
                                     <img class="col-sm-4" src="{{ asset('assets/img/brand/logo.png')}}" width="100%">
-                                    <h5 class="text-primary display-2">Pendaftaran Desa</h5>
+                                    <h5 class="text-primary display-2">Pendaftaran Desa Adat</h5>
                                 </div>
                             </div>
                         </div>
@@ -174,8 +166,8 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                        <label class="form-control-label" for="input-kodewilayah">Kode Wilayah<i class="text-danger text-sm text-bold">*</i></label>
-                                        <input type="text" name="kode_wilayah" class="form-control" placeholder="Kode Wilayah" value="" required>
+                                        <label class="form-control-label" for="input-kodewilayah">Kode Nomor Surat<i class="text-danger text-sm text-bold">*</i></label>
+                                        <input type="text" name="kode_nomor_surat" class="form-control" placeholder="Kode Nomor Surat" value="" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -279,7 +271,7 @@
                                 <h6 class="heading-small text-muted mb-4">Data Pemimpin</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                             <label class="form-control-label" for="input-country">Sebutan Pemimpin<i class="text-danger text-sm text-bold">*</i></label>
                                             <input type="text" name="sebutan_pemimpin" class="form-control" placeholder="Sebutan Pemimpin" required>
@@ -337,7 +329,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
     <!-- Footer -->
     @include('theme.footer')
@@ -345,10 +337,19 @@
 
     </div>
     <script src="{{asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>  --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+
+    <!-- Select2 -->
+    <script>
+        $(document).ready(function() {
+            $('#kramamipil_id').select2();
+        });
+    </script>
 
     <!-- Live Search -->
     <script type="text/javascript">
@@ -526,12 +527,7 @@
         });
     </script>
 
-    <!-- Select2 -->
-    <script>
-        $(document).ready(function() {
-            $('.kramamipil_id').select2();
-        });
-    </script>
+
 
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
@@ -561,6 +557,8 @@
     <script src="{{ asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
     <!-- Argon JS -->
     <script src="{{ asset('assets/js/argon.min.js?v=1.2.0') }}"></script> --}}
+    <!-- Argon JS -->
+    <script src="{{ asset('assets/js/argon.js?v=1.2.0') }}"></script>
     <script>
     $(document).ready(function() {
 

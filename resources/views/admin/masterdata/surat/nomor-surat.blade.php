@@ -9,7 +9,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Sistem Surat Menyurat</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('assets/img/brand/mail.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('assets/img/brand/logo.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
@@ -19,6 +19,7 @@
   <!-- Argon CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/argon.css?v=1.2.0') }}" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
 </head>
 
 <body>
@@ -110,11 +111,11 @@
                                                 @foreach ($nomorsurat as $data)
                                                     <tr id="nomorsurat{{ $data->master_surat_id }}">
                                                         <td> {{ $data->master_surat_id }} </td>
-                                                        <td> {{ $data->kode_nomor_surat }} </td>
+                                                        <td class="kodesurat"> {{ $data->kode_nomor_surat }} </td>
                                                         <td scope="row"> {{ $data->keterangan }} </td>
                                                         <td class="text-center">
-                                                            <a data-id="{{ $data->master_surat_id }}" onclick="editNomorSurat(event.target)" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
-                                                            <a class="btn btn-sm btn-flat btn-danger" onclick="deleteNomorSurat({{ $data->master_surat_id }})" data-toggle="modal" data-target="#"><i class="fa fa-trash"></i></a>
+                                                            <a href="javascript:void(0)" class="btn btn-sm btn-flat btn-warning edit" data-id="{{ $data->master_surat_id }}"><i class="fa fa-edit"></i></a>
+                                                            <a href="#" id="delete" class="btn btn-sm btn-flat btn-danger delete" data-id="{{ $data->master_surat_id }}"><i class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -144,30 +145,8 @@
       <!-- Modal Add -->
       @include('admin.masterdata.surat.add-nomor-surat')
 
-    {{--  @foreach($desa as $data)
-    <div class="modal fade" id="delete{{ $data->desa_id }}">
-        <div class="modal-dialog">
-            <div class="modal-content bg-secondary">
-            <div class="modal-header">
-                <h4 class="modal-title">{{ $data->nama_desa }}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus data?</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-outline-light" data-dismiss="modal">No</button>
-                <a href="/delete-desa/{{ $data->desa_id }}" type="button" class="btn btn-outline-light">Yes</a>
-            </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    @endforeach  --}}
+      <!-- Modal Edit -->
+      @include('admin.masterdata.surat.edit-nomor-surat')
 
     </div>
   </div>
@@ -175,9 +154,56 @@
 
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+  {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <script>
+
+    $(document).ready(function () {
+        $('.edit').click(function(e) {
+            e.preventDefault();
+
+            var mastersuratid = $(this).data('id');
+            var kodenomorsurat = $(this).data('kode');
+            var keterangan = $(this).data('keterangan');
+            $('#master_surat_id').val(mastersuratid);
+            $('#kode_nomor_surat').val(kodenomorsurat);
+            $('#keterangan').val(keterangan);
+
+        });
+    });
+
+    $('.delete').click(function(e) {
+        e.preventDefault();
+        var mastersuratid = $(this).attr('data-id');
+
+            swal({
+                title: "Apakah yakin menghapus data ?",
+                text: "Data nomor surat akan terhapus!",
+                icon: "warning",
+                buttons: ["Batal", "Hapus"],
+                successMode: true,
+            })
+            .then((isConfirm) => {
+                if (isConfirm) {
+                    window.location ="/nomor-surat/delete/"+mastersuratid+""
+                    swal("Berhasil! Data nomor surat telah terhapus!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Gagal! Data nomor surat batal terhapus!", {
+                        icon: "error",
+                    });
+                }
+            });
+    });
+
+  </script>
+
+  {{--  <script>
     jQuery(document).ready(function($) {
 
         //---- Open model Create ----//
@@ -210,7 +236,7 @@
                 data: formData,
                 dataType: "json",
                 success: function(data) {
-                    var nomorsurat = '<tr id="nomorsurat'+ data.master_surat_id +'"><td>' + data.master_surat_id + '</td><td>' + data.kode_nomor_surat + '</td><td scope="row">' + data.keterangan + '</td><td class="text-center"><a href="#" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a><button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#"><i class="fa fa-trash"></i></button></td></tr>';
+                    var nomorsurat = '<tr id="nomorsurat'+ data.master_surat_id +'"><td>' + data.master_surat_id + '</td><td>' + data.kode_nomor_surat + '</td><td scope="row">' + data.keterangan + '</td><td class="text-center"><a href="#" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a><a href="#" id="delete" class="btn btn-sm btn-flat btn-danger delete" data-id="{{ $data->master_surat_id }}"><i class="fa fa-trash"></i></a></td></tr>';
                     if (state == "add") {
                         jQuery('#nomorsurat_list').append(nomorsurat);
                     } else {
@@ -226,16 +252,73 @@
             });
         });
     });
+  </script>  --}}
+
+  <script type="text/javascript">
+    $(document).ready(function ($) {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#btn_add').click(function () {
+            $('#myForm').trigger("reset");
+            $('#ajaxNomorSuratModel').html("Tambah Nomor Surat");
+            window.$('#formNomorSurat').modal('show');
+        });
+
+        $('.edit').click(function () {
+
+            var master_surat_id = $(this).data('id');
+
+            //ajax
+            $.ajax({
+                type: "POST",
+                url: "{{ route('edit-nomor-surat') }}",
+                data: { master_surat_id: master_surat_id },
+                dataType: 'json',
+                success: function (res) {
+                    $('#ajaxNomorSuratModel').html("Edit Nomor Surat");
+                    window.$('#formNomorSurat').modal('show');
+                    $('#master_surat_id').val(res.master_surat_id);
+                    $('#kode_nomor_surat').val(res.kode_nomor_surat);
+                    $('#keterangan').val(res.keterangan);
+                }
+
+            });
+        });
+
+        $('#btn_save').click(function (event) {
+            var master_surat_id = $("#master_surat_id").val();
+            var kode_nomor_surat = $("#kode_nomor_surat").val();
+            var keterangan = $("#keterangan").val();
+
+            $("#btn_save").html('Mohon ditunggu...');
+            $("#btn_save").attr("disabled", true);
+
+            //ajax
+            $.ajax({
+                type: "POST",
+                url: "{{ route('add-update-nomor-surat') }}",
+                data: {
+                    master_surat_id: master_surat_id,
+                    kode_nomor_surat: kode_nomor_surat,
+                    keterangan: keterangan,
+                },
+                dataType: 'json',
+                success: function (res) {
+                    window.location.reload();
+                    $("#btn_save").html('Submit');
+                    $("#btn_save").attr("disabled", false);
+                    swal("Sukses!", "Data berhasil ditambahkan!", "success");
+                }
+            });
+        });
+    });
   </script>
 
-  <script>
-      function editNomorSurat(e) {
-          var master_surat_id = $(e).data('master_surat_id');
-          var nomorsurat = $("#nomorsurat"+master_surat_id+" td:nth-child(2)").html();
-          $('#master_surat_id').val(master_surat_id);
-          $('')
-      }
-  </script>
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>

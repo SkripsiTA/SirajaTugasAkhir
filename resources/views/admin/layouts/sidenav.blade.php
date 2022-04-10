@@ -67,12 +67,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="icons.html">
-                    <i class="ni ni-atom"></i>
-                    <span class="nav-link-text">Surat Layanan Masyarakat</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="icons.html">
                     <i class="ni ni-folder-17"></i>
                     <span class="nav-link-text">Manajemen Arsip Surat</span>
                     </a>

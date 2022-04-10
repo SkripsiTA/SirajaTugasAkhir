@@ -107,12 +107,17 @@ class DashboardSuperadminController extends Controller
     public function tolak(Request $request, $id)
     {
         $desaadatpending = DesaAdat::with(['kecamatan', 'user', 'prajurudesaadat'])->findOrFail($id);
-        dd($desaadatpending);
-        // $desaadatpending->desadat_status_register = 'Tolak';
-        // $desaadatpending->desadat_keterangan =
-        // $desaadatpending->save();
+        //
+        $desaadatpending->desadat_status_register = 'Tolak';
+        $desaadatpending->desadat_keterangan = $request->ket;
+        $desaadatpending->save();
+        // dd($desaadatpending);
 
-        return redirect()->route('superadmin')->with('success', 'Data berhasil disimpan!');
+        return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil disimpan!'
+            ]
+        );
     }
 
     public function destroy($id)

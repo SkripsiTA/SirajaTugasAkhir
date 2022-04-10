@@ -8,7 +8,7 @@
   <meta name="author" content="Creative Tim">
   <title>Sistem Surat Menyurat</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('assets/img/brand/mail.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('assets/img/brand/logo.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('add-surat-keluar-panitia') }}" method="POST">
+                <form action="{{ route('add-surat-keluar-panitia') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="card-body">
                       <h6 class="heading-small text-muted mb-4">Atribut Surat</h6>
@@ -90,7 +90,7 @@
                               <div class="col-lg-8">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Nomor Surat<i class="text-danger text-sm text-bold">*</i></label>
-                                    <input type="text" name="nomor_surat_keluar" class="form-control" id="nomor_surat_keluar" placeholder="otomatis" readonly>
+                                    <input type="text" name="nomor_surat_keluar" class="form-control" id="nomor_surat_keluar" placeholder="otomatis" value="{{ $kode_otomatis }}" readonly>
                                 </div>
                               </div>
                               <div class="col-lg-4">
@@ -117,18 +117,88 @@
                       <h6 class="heading-small text-muted mb-4">Daging Surat</h6>
                       <div class="pl-lg-4">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Daging Surat<i class="text-danger text-sm text-bold">*</i></label>
-                                    <textarea rows="4" name="daging_surat" class="form-control" placeholder="Daging Surat"></textarea>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-username">Pemahbah Surat</label>
+                                <textarea rows="4" name="pemahbah_surat" class="form-control" placeholder="Pemahbah Surat"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                              <div class="form-group">
+                                  <label class="form-control-label" for="input-username">Daging Surat</label>
+                                  <textarea rows="4" name="daging_surat" class="form-control" placeholder="Daging Surat"></textarea>
+                              </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-username">Pamuput Surat</label>
+                                <textarea rows="4" name="pamuput_surat" class="form-control" placeholder="Pamuput Surat"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <label class="form-control-label" for="input-country">Tanggal Kegiatan</label>
+                            <div class="input-daterange datepicker row align-items-center">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input class="form-control" name="tanggal_kegiatan_mulai" placeholder="Tanggal Kegiatan Mulai" type="text" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input class="form-control" name="tanggal_kegiatan_berakhir" placeholder="Tanggal Kegiatan Selesai" type="text" value="">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-email">Panitia Acara</label>
-                                    <input type="text" name="tim_kegiatan" class="password form-control" id="tim_kegiatan" placeholder="Panitia Acara">
+                          </div>
+                          <div class="col-lg-4">
+                            <label class="form-control-label" for="input-email">Waktu Kegiatan</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input type="time" name="waktu_kegiatan_mulai" class="form-control" id="waktu_kegiatan" placeholder="Waktu Kegiatan Mulai">
+                                    </div>
                                 </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input type="time" name="waktu_kegiatan_berakhir" class="form-control" id="waktu_kegiatan" placeholder="Waktu Kegiatan Selesai">
+                                    </div>
+                                </div>
+                              </div>
                             </div>
+                          <div class="col-lg-8">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Busana/Pakaian</label>
+                                <input type="text" name="busana" class="form-control" id="busana" placeholder="Busana/Pakaian">
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Tempat Kegiatan</label>
+                                <input type="text" name="tempat_kegiatan" class="form-control" id="tempat_kegiatan" placeholder="Tempat Kegiatan">
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Panitia Acara<i class="text-danger text-sm text-bold">*</i></label>
+                                <input type="text" name="tim_kegiatan" class="password form-control" id="tim_kegiatan" placeholder="Panitia Acara">
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                            <label class="form-control-label" for="input-country">Lepihan Surat<i class="text-danger text-sm text-bold">* File dalam format pdf (maksimal 25 MB)</i></label>
+                            <input type="file" name="lepihan_surat" class="form-control" placeholder="Lepihan Surat" value="" accept="application/pdf">
+                            </div>
+                        </div>
                         </div>
                       </div>
                       <hr class="my-4" />
@@ -161,11 +231,10 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Bendesa Adat<i class="text-danger text-sm text-bold">*</i></label>
                                     <select name="bendesa_adat" class="bendesa_adat form-control" id="bendesa_adat" style="height: 100%">
-                                        <option value="">-- Pilih Bendesa --</option>
-                                        {{--  @if($prajurudesa->jabatan == 'bendesa')
-                                            <option value="{{ $prajurudesa->prajuru_desa_adat_id }}">{{ $prajurudesa->kramamipil->cacahkramamipil->penduduk->nik }} - {{ $prajurudesa->kramamipil->cacahkramamipil->penduduk->nama }}</option>
-
-                                        @endif  --}}
+                                        {{--  <option value="">-- Pilih Bendesa --</option>  --}}
+                                        @if($prajurudesa[0]->jabatan == 'bendesa')  --}}
+                                            <option value="{{ $prajurudesa[0]->prajuru_desa_adat_id }}">{{ $prajurudesa[0]->kramamipil->cacahkramamipil->penduduk->nik }} - {{ $prajurudesa[0]->kramamipil->cacahkramamipil->penduduk->nama }}</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -190,16 +259,17 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>  --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <!-- Datepicker Indonesia -->
-  <script>
+  {{--  <script>
       $(function(){
         $.fn.datepicker.defaults.format = "dd-M-yyyy";
         $('.datepicker').datepicker({
             format: 'dd-M-yyyy',
         });
       });
-  </script>
+  </script>  --}}
 
   <!-- Select2 -->
   <script>
@@ -214,6 +284,11 @@
   <!-- Generate Password -->
   <script>
       $(function() {
+        $.fn.datepicker.defaults.format = "dd-M-yyyy";
+        $('.datepicker').datepicker({
+            format: 'dd-M-yyyy',
+        });
+
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
         });

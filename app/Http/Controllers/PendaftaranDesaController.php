@@ -122,7 +122,7 @@ class PendaftaranDesaController extends Controller
         $desaadat->desadat_nomor_register = $id;
         $desaadat->desa_adat_id = $request->desa;
         $desaadat->kecamatan_id = $request->kecamatan;
-        $desaadat->desadat_kode = $request->kode_wilayah;
+        $desaadat->desadat_kode_surat = $request->kode_nomor_surat;
         $desaadat->desadat_kode_pos = $request->kode_pos;
         $desaadat->desadat_status_aktif = $request->status_desa;
         $desaadat->desadat_alamat_kantor = $request->alamat_desa;

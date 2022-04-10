@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth', 'cek_login:Super Admin']], function () {
     route::get('/superadmin', [DashboardSuperadminController::class, 'index'])->name('superadmin');
     route::get('/superadmin/desa/konfirmasi/{id}', [DashboardSuperadminController::class, 'edit'])->name('konfirm-pendaftaran-desa');
     route::get('/superadmin/desa/detail/{id}', [DashboardSuperadminController::class, 'show'])->name('detail-desa');
-    route::post('/superadmin/desa/berhasil/{id}', [DashboardSuperadminController::class, 'update'])->name('pendaftaran-desa-berhasil');
+    route::get('/superadmin/desa/berhasil/{id}', [DashboardSuperadminController::class, 'update'])->name('pendaftaran-desa-berhasil');
     route::get('/superadmin/desa/tolak/{id}', [DashboardSuperadminController::class, 'tolak'])->name('pendaftaran-desa-ditolak');
 });
 
@@ -89,8 +89,8 @@ Route::get('/desa/delete/{id}', [DesaController::class, 'destroy'])->name('delet
 //Nomor Surat
 Route::get('/nomor-surat', [NomorSuratController::class, 'index'])->name('nomor-surat');
 Route::get('/nomor-surat/create', [NomorSuratController::class, 'create'])->name('create-nomor-surat');
-Route::post('/nomor-surat/add', [NomorSuratController::class, 'store'])->name('add-nomor-surat');
-Route::get('/nomor-surat/edit/{id}', [NomorSuratController::class, 'edit'])->name('edit-nomor-surat');
+Route::post('/nomor-surat/add', [NomorSuratController::class, 'store'])->name('add-update-nomor-surat');
+Route::post('/nomor-surat/edit', [NomorSuratController::class, 'edit'])->name('edit-nomor-surat');
 Route::post('/nomor-surat/update/{id}', [NomorSuratController::class, 'update'])->name('update-nomor-surat');
 Route::get('/nomor-surat/delete/{id}', [NomorSuratController::class, 'destroy'])->name('delete-nomor-surat');
 
@@ -125,3 +125,4 @@ Route::get('/surat/keluar/panitia', [SuratKeluarPanitiaController::class, 'index
 Route::get('/surat/keluar/panitia/create', [SuratKeluarPanitiaController::class, 'create'])->name('create-surat-keluar-panitia');
 Route::post('/surat/keluar/panitia/add', [SuratKeluarPanitiaController::class, 'store'])->name('add-surat-keluar-panitia');
 Route::get('/surat/keluar/panitia/detail/{id}', [SuratKeluarPanitiaController::class, 'show'])->name('detail-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/cetak/{id}', [SuratKeluarPanitiaController::class, 'cetak'])->name('cetak-surat-keluar-panitia');

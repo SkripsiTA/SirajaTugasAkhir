@@ -8,7 +8,7 @@
   <meta name="author" content="Creative Tim">
   <title>Sistem Surat Menyurat</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('assets/img/brand/mail.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('assets/img/brand/logo.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
@@ -118,7 +118,6 @@
                                                     <th scope="col" class="sort" data-sort="name">No</th>
                                                     <th scope="col" class="sort" data-sort="name">Kode Surat</th>
                                                     <th scope="col-3" class="sort" data-sort="name">Parindikan</th>
-                                                    <th scope="col" class="sort" data-sort="budget">Desa Adat</th>
                                                     <th scope="col" class="sort" data-sort="status">Status</th>
                                                     <th scope="col">Tanggal Surat</th>
                                                     <th scope="col-2">Kaatur Ring</th>
@@ -135,19 +134,22 @@
                                                     <td> {{ $i++ }} </td>
                                                     <td>{{ $data->nomor_surat }}</td>
                                                     <th scope="row">{{ $data->parindikan }}</th>
-                                                        <td>{{ $data->desaadat->desadat_nama }}</td>
-                                                        <td>
-                                                            <span class="badge badge-pill badge-warning">{{ $data->status }}</span>
-                                                        </td>
-                                                        <td>{{ showDateTime($data->tanggal_surat, 'd F Y') }}</td>
-                                                        <td>{{ $data->pihak_penerima }}</td>
-                                                        <td>{{ $data->tim_kegiatan }}</td>
-                                                        <td class="text-right">
-                                                            <a href="{{ route('detail-surat-keluar-panitia', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
-                                                        </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-warning">{{ $data->status }}</span>
+                                                    </td>
+                                                    @if ($data->created_at == null)
+                                                        <td>{{ $data->created_at }}</td>
+                                                    @else
+                                                        <td>{{ showDateTime($data->created_at, 'd F Y') }}</td>
+                                                    @endif
+                                                    <td>{{ $data->pihak_penerima }}</td>
+                                                    <td>{{ $data->tim_kegiatan }}</td>
+                                                    <td class="text-right">
+                                                        <a href="{{ route('detail-surat-keluar-panitia', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
+                                                    </td>
 
-                                                    </tr>
-                                                    @endforeach
+                                                </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                             </div>
@@ -175,7 +177,6 @@
                                                         <th scope="col" class="sort" data-sort="name">No</th>
                                                         <th scope="col" class="sort" data-sort="name">Kode Surat</th>
                                                         <th scope="col-3" class="sort" data-sort="name">Parindikan</th>
-                                                        <th scope="col" class="sort" data-sort="budget">Desa Adat</th>
                                                         <th scope="col" class="sort" data-sort="status">Status</th>
                                                         <th scope="col">Tanggal Surat</th>
                                                         <th scope="col-2">Kaatur Ring</th>
@@ -192,19 +193,22 @@
                                                         <td> {{ $i++ }} </td>
                                                         <td>{{ $data->nomor_surat }}</td>
                                                         <th scope="row">{{ $data->parindikan }}</th>
-                                                            <td>{{ $data->desaadat->desadat_nama }}</td>
-                                                            <td>
-                                                                <span class="badge badge-pill badge-default">{{ $data->status }}</span>
-                                                            </td>
-                                                            <td>{{ showDateTime($data->tanggal_surat, 'd F Y') }}</td>
-                                                            <td>{{ $data->pihak_penerima }}</td>
-                                                            <td>{{ $data->tim_kegiatan }}</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
-                                                            </td>
+                                                        <td>
+                                                            <span class="badge badge-pill badge-warning">{{ $data->status }}</span>
+                                                        </td>
+                                                        @if ($data->created_at == null)
+                                                            <td>{{ $data->created_at }}</td>
+                                                        @else
+                                                            <td>{{ showDateTime($data->created_at, 'd F Y') }}</td>
+                                                        @endif
+                                                        <td>{{ $data->pihak_penerima }}</td>
+                                                        <td>{{ $data->tim_kegiatan }}</td>
+                                                        <td class="text-right">
+                                                            <a href="{{ route('detail-surat-keluar-panitia', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
+                                                        </td>
 
-                                                        </tr>
-                                                        @endforeach
+                                                    </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -232,7 +236,6 @@
                                                         <th scope="col" class="sort" data-sort="name">No</th>
                                                         <th scope="col" class="sort" data-sort="name">Kode Surat</th>
                                                         <th scope="col-3" class="sort" data-sort="name">Parindikan</th>
-                                                        <th scope="col" class="sort" data-sort="budget">Desa Adat</th>
                                                         <th scope="col" class="sort" data-sort="status">Status</th>
                                                         <th scope="col">Tanggal Surat</th>
                                                         <th scope="col-2">Kaatur Ring</th>
@@ -249,19 +252,22 @@
                                                         <td> {{ $i++ }} </td>
                                                         <td>{{ $data->nomor_surat }}</td>
                                                         <th scope="row">{{ $data->parindikan }}</th>
-                                                            <td>{{ $data->desaadat->desadat_nama }}</td>
-                                                            <td>
-                                                                <span class="badge badge-pill badge-success">{{ $data->status }}</span>
-                                                            </td>
-                                                            <td>{{ showDateTime($data->tanggal_surat, 'd F Y') }}</td>
-                                                            <td>{{ $data->pihak_penerima }}</td>
-                                                            <td>{{ $data->tim_kegiatan }}</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
-                                                            </td>
+                                                        <td>
+                                                            <span class="badge badge-pill badge-warning">{{ $data->status }}</span>
+                                                        </td>
+                                                        @if ($data->tanggal_keluar == null)
+                                                            <td>{{ $data->tanggal_keluar }}</td>
+                                                        @else
+                                                            <td>{{ showDateTime($data->tanggal_keluar, 'd F Y') }}</td>
+                                                        @endif
+                                                        <td>{{ $data->pihak_penerima }}</td>
+                                                        <td>{{ $data->tim_kegiatan }}</td>
+                                                        <td class="text-right">
+                                                            <a href="{{ route('detail-surat-keluar-panitia', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
+                                                        </td>
 
-                                                        </tr>
-                                                        @endforeach
+                                                    </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -289,7 +295,6 @@
                                                         <th scope="col" class="sort" data-sort="name">No</th>
                                                         <th scope="col" class="sort" data-sort="name">Kode Surat</th>
                                                         <th scope="col-3" class="sort" data-sort="name">Parindikan</th>
-                                                        <th scope="col" class="sort" data-sort="budget">Desa Adat</th>
                                                         <th scope="col" class="sort" data-sort="status">Status</th>
                                                         <th scope="col">Tanggal Pembuatan</th>
                                                         <th scope="col-2">Kaatur Ring</th>
@@ -306,19 +311,22 @@
                                                         <td> {{ $i++ }} </td>
                                                         <td>{{ $data->nomor_surat }}</td>
                                                         <th scope="row">{{ $data->parindikan }}</th>
-                                                            <td>{{ $data->desaadat->desadat_nama }}</td>
-                                                            <td>
-                                                                <span class="badge badge-pill badge-danger">{{ $data->status }}</span>
-                                                            </td>
-                                                            <td>{{ showDateTime($data->tanggal_surat, 'd F Y') }}</td>
-                                                            <td>{{ $data->pihak_penerima }}</td>
-                                                            <td>{{ $data->tim_kegiatan }}</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
-                                                            </td>
+                                                        <td>
+                                                            <span class="badge badge-pill badge-warning">{{ $data->status }}</span>
+                                                        </td>
+                                                        @if ($data->created_at == null)
+                                                            <td>{{ $data->created_at }}</td>
+                                                        @else
+                                                            <td>{{ showDateTime($data->created_at, 'd F Y') }}</td>
+                                                        @endif
+                                                        <td>{{ $data->pihak_penerima }}</td>
+                                                        <td>{{ $data->tim_kegiatan }}</td>
+                                                        <td class="text-right">
+                                                            <a href="{{ route('detail-surat-keluar-panitia', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
+                                                        </td>
 
-                                                        </tr>
-                                                        @endforeach
+                                                    </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

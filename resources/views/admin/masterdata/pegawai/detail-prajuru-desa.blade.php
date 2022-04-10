@@ -8,7 +8,7 @@
   <meta name="author" content="Creative Tim">
   <title>Sistem Surat Menyurat</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('assets/img/brand/mail.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('assets/img/brand/logo.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->

@@ -40,4 +40,9 @@ class KramaMipil extends Model
     {
         return $this->hasMany(DetailSuratKeluarPanitia::class);
     }
+
+    public function validasipanitia()
+    {
+        return $this->hasMany(ValidasiPanitia::class);
+    }
 }

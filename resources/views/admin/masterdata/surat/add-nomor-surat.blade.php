@@ -2,12 +2,12 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tambah Nomor Surat</h5>
+            <h5 class="modal-title" id="ajaxNomorSuratModel"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form id="myForm" name="myForm" class="form-horizontal" novalidate="">
+        <form action="javascript:void(0)" id="myForm" name="myForm" class="form-horizontal" method="POST">
             {{--  {{ csrf_field() }}  --}}
             <div class="modal-body">
                 {{-- Error Alert --}}
@@ -16,6 +16,7 @@
                         <strong>Whoops!</strong> Inputan yang anda berikan salah!<br><br>
                     </div>
                 @endif  --}}
+                <input type="hidden" id="master_surat_id" name="master_surat_id" value="0">
                 <div class="pl-lg-12">
                     <div class="row">
                         <div class="col-lg-4">
@@ -35,8 +36,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-success" id="btn_save" value="add">Simpan</button>
-                <input type="hidden" id="master_surat_id" name="master_surat_id" value="0">
+                <button type="submit" class="btn btn-success" id="btn_save" value="add">Simpan</button>
             </div>
         </form>
         </div>

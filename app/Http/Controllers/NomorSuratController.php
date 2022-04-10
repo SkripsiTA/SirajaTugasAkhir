@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\NomorSurat;
 use App\Models\DetailNomorSurat;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Auth;
 
 class NomorSuratController extends Controller
 {
@@ -20,7 +21,7 @@ class NomorSuratController extends Controller
      */
     public function index()
     {
-        $nomorsurat = NomorSurat::paginate(10);
+        $nomorsurat = NomorSurat::where('desa_adat_id', Auth::user()->desa_adat_id)->paginate(10);
 
         return view('admin.masterdata.surat.nomor-surat',compact('nomorsurat'));
     }
@@ -68,12 +69,22 @@ class NomorSuratController extends Controller
 
         // return redirect('nomor-surat')->with('toast_success', 'Data berhasil ditambahkan!');
 
-        $data = $request->validate([
+        $request->validate([
             'kode_nomor_surat' => 'required',
             'keterangan' => 'required',
         ]);
 
-        $nomorsurat = NomorSurat::create($data);
+
+        $nomorsurat = NomorSurat::updateOrCreate(
+            [
+                'master_surat_id' => request('master_surat_id'),
+            ],
+            [
+                'kode_nomor_surat' => request('kode_nomor_surat'),
+                'keterangan' => request('keterangan'),
+                'desa_adat_id' => Auth::user()->desa_adat_id,
+
+            ]);
 
         return Response::json($nomorsurat);
 
@@ -98,9 +109,12 @@ class NomorSuratController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $where = array('master_surat_id' => $request->master_surat_id);
+        $nomorsurat = NomorSurat::where($where)->first();
+
+        return response()->json($nomorsurat);
     }
 
     /**
@@ -134,6 +148,7 @@ class NomorSuratController extends Controller
     {
         $nomorsurat = NomorSurat::findorFail($id);
         $nomorsurat->delete();
-        return Response::json($nomorsurat);
+
+        return redirect()->route('nomor-surat');
     }
 }

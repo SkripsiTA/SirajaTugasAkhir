@@ -9,7 +9,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Sistem Surat Menyurat</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('assets/img/brand/mail.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('assets/img/brand/logo.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
@@ -18,6 +18,7 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/argon.css?v=1.2.0') }}" type="text/css">
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -292,6 +293,7 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script>
+
     $('.konfirmasi').click(function(e) {
         e.preventDefault();
         var prajurudesaid = $(this).attr('data-id');
