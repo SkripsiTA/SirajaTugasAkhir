@@ -16,7 +16,7 @@
                         <strong>Whoops!</strong> Inputan yang anda berikan salah!<br><br>
                     </div>
                 @endif  --}}
-                <input type="hidden" id="master_surat_id" name="master_surat_id" value="0">
+                <input type="hidden" id="master_surat_id" name="master_surat_id">
                 <div class="pl-lg-12">
                     <div class="row">
                         <div class="col-lg-4">

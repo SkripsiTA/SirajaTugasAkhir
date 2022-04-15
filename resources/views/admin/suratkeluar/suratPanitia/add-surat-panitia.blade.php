@@ -87,10 +87,21 @@
                       <h6 class="heading-small text-muted mb-4">Atribut Surat</h6>
                       <div class="pl-lg-4">
                           <div class="row">
+                              <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Master Surat<i class="text-danger text-sm text-bold">*</i></label>
+                                    <select name="master_surat" class="form-control" id="master_surat" style="height: 100%">
+                                      <option value="">-- Pilih Master Surat --</option>
+                                      @foreach ($nomorsurat as $data)
+                                          <option value="{{ $data->master_surat_id }}" data-id="{{ $data->kode_nomor_surat }}">{{ $data->kode_nomor_surat }}</option>
+                                      @endforeach
+                                    </select>
+                                </div>
+                              </div>
                               <div class="col-lg-8">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Nomor Surat<i class="text-danger text-sm text-bold">*</i></label>
-                                    <input type="text" name="nomor_surat_keluar" class="form-control" id="nomor_surat_keluar" placeholder="otomatis" value="{{ $kode_otomatis }}" readonly>
+                                    <input type="text" name="nomor_surat_keluar" class="form-control" id="nomor_surat_keluar" placeholder="otomatis" value="" readonly>
                                 </div>
                               </div>
                               <div class="col-lg-4">
@@ -113,6 +124,7 @@
                               </div>
                           </div>
                       </div>
+
                       <hr class="my-4" />
                       <h6 class="heading-small text-muted mb-4">Daging Surat</h6>
                       <div class="pl-lg-4">
@@ -240,6 +252,17 @@
                             </div>
                         </div>
                       </div>
+                      <h6 class="heading-small text-muted mb-4">Tumusan Surat</h6>
+                      <div class="pl-lg-4">
+                          <div class="row">
+                              <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Tumusan</label>
+                                    <input type="text" name="tumusan" class="form-control" id="tumusan" placeholder="Tumusan">
+                                </div>
+                              </div>
+                          </div>
+                      </div>
                     </div>
                     <div class="card-footer text-right">
                         <a href="{{ route('home-surat-keluar-panitia') }}" type="button" class="btn btn-secondary">Batal</a>
@@ -256,6 +279,10 @@
       @include('sweetalert::alert')
     </div>
   </div>
+  <input type="hidden" class="d-none form-control" id="kode_surat" value="{{ $kode_surat }}">
+  {{--  <input type="text" class="d-none form-control" id="kode_surat" value="@json($kode_surat)">
+  <input type="text" class="d-none form-control" id="kode_surat" value="@json($kode_surat)">  --}}
+
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>  --}}
@@ -281,7 +308,7 @@
     });
   </script>
 
-  <!-- Generate Password -->
+  <!-- Generate Nomor Surat -->
   <script>
       $(function() {
         $.fn.datepicker.defaults.format = "dd-M-yyyy";
@@ -289,22 +316,26 @@
             format: 'dd-M-yyyy',
         });
 
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-        });
 
-        $(function() {
-            $('.kramamipil_id').on('change', function() {
-                var kramamipil_id = $(this).val();
-                var nik = $(this).find(':selected').data('id');
-                console.log(nik)
-
-                $( "#password" ).val();
-                $( "#password" ).val(nik);
-
-            })
-        });
       });
+
+        let arrayKode = $('#kode_surat').val();
+        let data = JSON.parse(arrayKode)
+        let kode = data.kode_surat;
+        console.log(data)
+
+        generateNomorSurat(kode)
+
+        function generateNomorSurat(kode){
+            var kode_surat = data.last_id + "/" +kode+"-"+data.kode_desa+"/"+data.bulan+"/"+data.tahun;
+            $('#nomor_surat_keluar').val(kode_surat)
+        }
+
+        $('#master_surat').on('change', function() {
+            var kode = $(this).find(':selected').data('id');
+            generateNomorSurat(kode)
+        })
+
   </script>
 
 

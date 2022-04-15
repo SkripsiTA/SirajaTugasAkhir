@@ -57,7 +57,8 @@ Route::group(['middleware' => ['auth', 'cek_login:Super Admin']], function () {
     route::get('/superadmin/desa/konfirmasi/{id}', [DashboardSuperadminController::class, 'edit'])->name('konfirm-pendaftaran-desa');
     route::get('/superadmin/desa/detail/{id}', [DashboardSuperadminController::class, 'show'])->name('detail-desa');
     route::get('/superadmin/desa/berhasil/{id}', [DashboardSuperadminController::class, 'update'])->name('pendaftaran-desa-berhasil');
-    route::get('/superadmin/desa/tolak/{id}', [DashboardSuperadminController::class, 'tolak'])->name('pendaftaran-desa-ditolak');
+    route::post('/superadmin/desa/tolak', [DashboardSuperadminController::class, 'tolak'])->name('pendaftaran-desa-ditolak');
+    route::get('/superadmin/desa/detail/tolak/{id}', [DashboardSuperadminController::class, 'showtolak'])->name('detail-desa-tolak');
 });
 
 // //Middleware User
@@ -124,5 +125,10 @@ Route::get('/surat/keluar', [SuratKeluarController::class, 'index'])->name('dash
 Route::get('/surat/keluar/panitia', [SuratKeluarPanitiaController::class, 'index'])->name('home-surat-keluar-panitia');
 Route::get('/surat/keluar/panitia/create', [SuratKeluarPanitiaController::class, 'create'])->name('create-surat-keluar-panitia');
 Route::post('/surat/keluar/panitia/add', [SuratKeluarPanitiaController::class, 'store'])->name('add-surat-keluar-panitia');
-Route::get('/surat/keluar/panitia/detail/{id}', [SuratKeluarPanitiaController::class, 'show'])->name('detail-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/edit/{id}', [SuratKeluarPanitiaController::class, 'edit'])->name('edit-surat-keluar-panitia');
+Route::post('/surat/keluar/panitia/update/{id}', [SuratKeluarPanitiaController::class, 'update'])->name('update-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/detail/waiting/{id}', [SuratKeluarPanitiaController::class, 'show'])->name('detail-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/detail/inprogress/{id}', [SuratKeluarPanitiaController::class, 'showinprogress'])->name('detail-surat-keluar-panitia-inprogress');
+Route::get('/surat/keluar/panitia/lepihan/{id}', [SuratKeluarPanitiaController::class, 'showlepihan'])->name('lampiran-surat-keluar-panitia');
 Route::get('/surat/keluar/panitia/cetak/{id}', [SuratKeluarPanitiaController::class, 'cetak'])->name('cetak-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/response/inprogress/{id}', [SuratKeluarPanitiaController::class, 'inprogress'])->name('inprogress-surat-keluar-panitia');

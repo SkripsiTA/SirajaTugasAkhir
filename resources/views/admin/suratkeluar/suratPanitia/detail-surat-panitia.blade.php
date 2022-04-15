@@ -115,10 +115,10 @@
                             <h3 class="mb-0">Detail surat Keluar</h3>
                         </div>
                         <div class="col-2 float-right">
-                            <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-edit"></i></a>
+                            <a href="{{ route('edit-surat-keluar-panitia', $suratkeluarpanitia->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-edit"></i></a>
                             <a href="{{ route('cetak-surat-keluar-panitia', $suratkeluarpanitia->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary" target="_blank"><i class="fa fa-print "></i></a>
-                            <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-spinner"></i></a>
-                            <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-download"></i></a>
+                            <button href="#" data-id="{{ $suratkeluarpanitia->surat_keluar_id }} type="submit" class="btn btn-sm btn-flat btn-primary inprogress"><i class="fa fa-spinner"></i></button>
+                            <button href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-download"></i></button>
                         </div>
                     </div>
                 </div>
@@ -206,23 +206,33 @@
                         <tr>
                             <td>
                                 <font size="3" style="font-family: TimesNewRoman;">Ketua</font><br><br><br><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasipanitia[1]->kramamipil->cacahkramamipil->penduduk->nama }}</font><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasipanitia[1]->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
                             </td>
                             <td class="text-right">
                                 <font size="3" style="font-family: TimesNewRoman;">Sekretaris</font><br><br><br><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasipanitia[0]->kramamipil->cacahkramamipil->penduduk->nama }}</font><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasipanitia[0]->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2"  class="text-center" >
                                 <font size="3" style="font-family: TimesNewRoman;">Bendesa</font><br><br><br><br><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasiprajurudesa[0]->prajurudesaadat->kramamipil->cacahkramamipil->penduduk->nama }}</font><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasiprajurudesa[0]->prajurudesaadat->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
                             </td>
+                        </tr>
+                        <tr>
+                            @if($suratkeluarpanitia->tumusan != null)
+                            <td colspan="2">
+                                <hr class="my-4" />
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">Tumusan</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;">&ensp;&nbsp; 1.&nbsp;{{ $suratkeluarpanitia->tumusan }}</font><br>
+                            </td>
+                            @endif
                         </tr>
                     </table>
                 </div>
                 <div class="card-footer text-right">
-                    <a href="{{ route('home-surat-keluar-panitia') }}" type="button" class="btn btn-secondary">Batal</a>
+                    <a href="{{ route('home-surat-keluar-panitia') }}" type="button" class="btn btn-warning float-left">Batal</a>
+                    <a href="{{ route('lampiran-surat-keluar-panitia', $suratkeluarpanitia->surat_keluar_id) }}" type="button" class="btn btn-info float-right">Lepihan</a>
                 </div>
             </div>
         </div>
@@ -237,6 +247,7 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>  --}}
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- Datepicker Indonesia -->
   <script>
@@ -253,6 +264,31 @@
     $(document).ready(function() {
         $('.kramamipil_id').select2();
     });
+
+    $('.inprogress').click(function(e) {
+        e.preventDefault();
+        var suratkeluarpanitiaid = $(this).attr('data-id');
+
+            swal({
+                title: "Apakah melanjutkan verifikasi surat ?",
+                text: "Notifikasi verifikasi akan dikirimkan!",
+                icon: "warning",
+                buttons: ["Batal", "Lanjutkan"],
+                successMode: true,
+            })
+            .then((isConfirm) => {
+                if (isConfirm) {
+                    window.location ="/surat/keluar/panitia/response/inprogress/"+suratkeluarpanitiaid+""
+                    swal("Berhasil! Notifikasi verifikasi akan dikirimkan!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Data surat belum diproses!", {
+                        icon: "error",
+                    });
+                }
+            });
+      });
   </script>
 
   <!-- Generate Password -->
@@ -275,6 +311,7 @@
         });
       });
   </script>
+
 
 
   <!-- Argon Scripts -->

@@ -204,7 +204,7 @@
                                                         <td>{{ $data->pihak_penerima }}</td>
                                                         <td>{{ $data->tim_kegiatan }}</td>
                                                         <td class="text-right">
-                                                            <a href="{{ route('detail-surat-keluar-panitia', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
+                                                            <a href="{{ route('detail-surat-keluar-panitia-inprogress', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
                                                         </td>
 
                                                     </tr>

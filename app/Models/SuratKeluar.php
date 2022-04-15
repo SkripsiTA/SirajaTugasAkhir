@@ -15,7 +15,7 @@ class SuratKeluar extends Model
     protected $fillable = [
         'master_surat_id', 'desa_adat_id', 'tanggal_keluar', 'nomor_surat', 'parindikan', 'pamahbah_surat',
         'daging_surat', 'pamuput_surat', 'tanggal_kegiatan_mulai', 'tanggal_kegiatan_berakhir', 'busana', 'tempat_kegiatan', 'waktu_kegiatan_mulai',
-        'waktu_kegiatan_selesai', 'tim_kegiatan', 'file', 'lampiran', 'tanggal_surat', 'status', 'pihak_penerima',
+        'waktu_kegiatan_selesai', 'tim_kegiatan', 'file', 'lampiran', 'tanggal_surat', 'status', 'pihak_penerima', 'tumusan'
     ];
 
     protected $dates = ['tanggal_keluar', 'tanggal_surat', 'tanggal_kegiatan_mulai', 'tanggal_kegiatan_berakhir', 'created_at', 'updated_at'];

@@ -104,24 +104,22 @@ class DashboardSuperadminController extends Controller
 
     }
 
-    public function tolak(Request $request, $id)
+    public function tolak(Request $request)
     {
-        $desaadatpending = DesaAdat::with(['kecamatan', 'user', 'prajurudesaadat'])->findOrFail($id);
-        //
+        $desaadatpending = DesaAdat::with(['kecamatan', 'user', 'prajurudesaadat'])->where('desa_adat_id', $request->desa_adat_id)->first();
+
         $desaadatpending->desadat_status_register = 'Tolak';
-        $desaadatpending->desadat_keterangan = $request->ket;
+        $desaadatpending->desadat_keterangan = $request->desadat_keterangan;
         $desaadatpending->save();
         // dd($desaadatpending);
 
-        return response()->json([
-                'success' => true,
-                'message' => 'Data berhasil disimpan!'
-            ]
-        );
+        return redirect()->route('superadmin')->with('success', 'Data berhasil disimpan!');
     }
 
-    public function destroy($id)
+    public function showtolak($id)
     {
-        //
+        $desaadatdetail = DesaAdat::with(['kecamatan', 'user', 'prajurudesaadat'])->findOrFail($id);
+
+        return view('superadmin.dashboard.detail-desa-tolak', compact('desaadatdetail'));
     }
 }

@@ -257,7 +257,7 @@
             setRatio:1,
             allowedExtensions: ['jpg', 'jpeg','png'],
             buttonsText:['CROP','QUIT'],
-            buttonsColor:['#30bf7d','#ee5155', -15], --}}
+            buttonsColor:['#30bf7d','#ee5155', -15],
             onSuccess:function(message, element, status){
                alert(message);
             },

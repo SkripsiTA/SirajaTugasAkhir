@@ -266,7 +266,7 @@
                                                             </td>
                                                             <td>{{ $data->desadat_keterangan }}</td>
                                                             <td class="text-right">
-                                                                <a href="{{ route('detail-desa', $data->desa_adat_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
+                                                                <a href="{{ route('detail-desa-tolak', $data->desa_adat_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
                                                             </td>
                                                         </tr>
                                                         @endforeach

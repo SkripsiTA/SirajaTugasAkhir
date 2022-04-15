@@ -109,7 +109,7 @@
                                                 </thead>
                                                 <tbody class="list" id="nomorsurat_list" name="nomorsurat_list">
                                                 @foreach ($nomorsurat as $data)
-                                                    <tr id="nomorsurat{{ $data->master_surat_id }}">
+                                                    <tr>
                                                         <td> {{ $data->master_surat_id }} </td>
                                                         <td class="kodesurat"> {{ $data->kode_nomor_surat }} </td>
                                                         <td scope="row"> {{ $data->keterangan }} </td>

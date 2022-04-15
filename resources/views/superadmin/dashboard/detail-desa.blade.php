@@ -175,6 +175,7 @@
                                     </div>
                                 </div>
                                 <div class="form-section">
+                                    <hr class="my-4" />
                                     <h6 class="heading-small text-muted mb-4">Detail Desa</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">
@@ -211,6 +212,7 @@
                                     </div>
                                 </div>
                                 <div class="form-section">
+                                    <hr class="my-4" />
                                     <h6 class="heading-small text-muted mb-4">Data Pemimpin</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">
@@ -257,6 +259,7 @@
                                     </div>
                                 </div>
                                 <div class="form-section">
+                                    <hr class="my-4" />
                                     <h6 class="heading-small text-muted mb-4">Data Akun</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">

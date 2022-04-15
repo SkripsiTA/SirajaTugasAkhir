@@ -205,13 +205,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                               <label class="form-control-label" for="input-city">Ayah</label>
-                              <input type="text" name="nama_ayah" class="form-control" placeholder="Ayah" value="{{ Auth::user()->penduduk->ayahkandung->nama }}" disabled>
+                              <input type="text" name="nama_ayah" class="form-control" placeholder="Ayah" value="{{ Auth::user()->penduduk->ayahkandung->nama ?? "Tidak Diketahui" }}" disabled>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                               <label class="form-control-label" for="input-country">Ibu</label>
-                              <input type="text" name="nama_ibu" class="form-control" placeholder="Ibu" value="{{ Auth::user()->penduduk->ibukandung->nama }}" disabled>
+                              <input type="text" name="nama_ibu" class="form-control" placeholder="Ibu" value="{{ Auth::user()->penduduk->ibukandung->nama ?? "Tidak Diketahui" }}" disabled>
                             </div>
                         </div>
                     </div>
