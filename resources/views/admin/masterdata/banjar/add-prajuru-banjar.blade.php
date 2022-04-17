@@ -133,7 +133,7 @@
                               </div>
                               <div class="col-lg-12">
                                 <label class="form-control-label" for="input-country">Periode Menjabat<i class="text-danger text-sm text-bold">*</i></label>
-                                <div class="input-daterange datepicker row align-items-center">
+                                <div class="input-daterange datepicker1 row align-items-center">
                                     <div class="col">
                                         <div class="form-group">
                                             <div class="input-group">
@@ -200,7 +200,7 @@
   <script>
       $(function(){
         $.fn.datepicker.defaults.format = "dd-M-yyyy";
-        $('.datepicker').datepicker({
+        $('.datepicker1').datepicker({
             format: 'dd-M-yyyy',
         });
       });

@@ -57,7 +57,7 @@
                     <div class="card-body">
                       <div class="row">
                           <div class="col">
-                              <h5 class="card-title text-uppercase text-muted mb-10">Panitia</h5>
+                              <h5 class="card-title text-uppercase text-muted mb-10">Surat Keluar Panitia</h5>
                               <span class="h2 font-weight-bold mb-0">350,897</span>
                           </div>
                           <div class="col-auto">
@@ -70,32 +70,14 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-xl-3 col-md-6">
                   <div class="card card-stats">
                     <!-- Card body -->
                     <div class="card-body">
                       <div class="row">
                         <div class="col">
-                          <h5 class="card-title text-uppercase text-muted mb-10">Prajuru Desa Adat</h5>
-                          <span class="h2 font-weight-bold mb-0">2,356</span>
-                        </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow" style="width:70px; height:70px;">
-                            <i class="ni ni-chart-pie-35" style="font-size:36px;"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <a href="/kecamatan" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                  <div class="card card-stats">
-                    <!-- Card body -->
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col">
-                          <h5 class="card-title text-uppercase text-muted mb-10">Bendesa Adat</h5>
+                          <h5 class="card-title text-uppercase text-muted mb-10">Surat Keluar Non-Panitia</h5>
                           <span class="h2 font-weight-bold mb-0">924</span>
                         </div>
                         <div class="col-auto">
@@ -104,29 +86,11 @@
                           </div>
                         </div>
                       </div>
-                      <a href="/kabupaten" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                      <a href="{{ route('home-surat-keluar-non-panitia') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
-                  <div class="card card-stats">
-                    <!-- Card body -->
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col">
-                          <h5 class="card-title text-uppercase text-muted mb-0">Paruman Desa Adat</h5>
-                          <span class="h2 font-weight-bold mb-0">21</span>
-                        </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow" style="width:70px; height:70px;">
-                            <i class="fa fa-handshake" aria-hidden="true" style="font-size:36px;"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <a href="/provinsi" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                  </div>
-                </div>
+
               </div>
           </div>
         </div>

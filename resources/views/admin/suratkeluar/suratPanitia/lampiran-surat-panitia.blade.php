@@ -114,9 +114,6 @@
                         <div class="col-10">
                             <h3 class="mb-0">Lepihan surat Keluar</h3>
                         </div>
-                        <div class="col-2">
-                            <a href="#" class="btn btn-sm btn-flat btn-primary float-right"><i class="fa fa-download"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="card-body">

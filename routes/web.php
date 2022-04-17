@@ -13,7 +13,9 @@ use App\Http\Controllers\PrajuruDesaController;
 use App\Http\Controllers\PrajuruBanjarController;
 use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\SuratKeluarPanitiaController;
+use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\DusunController;
+use App\Http\Controllers\DashboardSuratKeluarController;
 
 
 
@@ -103,6 +105,7 @@ Route::post('/prajuru/desaadat/add', [PrajuruDesaController::class, 'store'])->n
 Route::get('/prajuru/desaadat/edit/{id}', [PrajuruDesaController::class, 'edit'])->name('edit-prajuru-desa-adat');
 Route::post('/prajuru/desaadat/update/{id}', [PrajuruDesaController::class, 'update'])->name('update-prajuru-desa-adat');
 Route::get('/prajuru/desaadat/nonaktif/{id}', [PrajuruDesaController::class, 'nonaktif'])->name('nonaktif-prajuru-desa-adat');
+Route::get('/prajuru/desaadat/aktif/{id}', [PrajuruDesaController::class, 'aktif'])->name('aktif-prajuru-desa-adat');
 Route::get('/prajuru/desaadat/detail/{id}', [PrajuruDesaController::class, 'detail'])->name('detail-prajuru-desa-adat');
 
 //Prajuru Banjar Adat
@@ -112,6 +115,7 @@ Route::post('/prajuru/banjaradat/add', [PrajuruBanjarController::class, 'store']
 Route::get('/prajuru/banjaradat/edit/{id}', [PrajuruBanjarController::class, 'edit'])->name('edit-prajuru-banjar-adat');
 Route::post('/prajuru/banjaradat/update/{id}', [PrajuruBanjarController::class, 'update'])->name('update-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/nonaktif/{id}', [PrajuruBanjarController::class, 'nonaktif'])->name('nonaktif-prajuru-banjar-adat');
+Route::get('/prajuru/banjaradat/aktif/{id}', [PrajuruBanjarController::class, 'aktif'])->name('aktif-prajuru-banjar-adat');
 Route::get('/prajuru/banjaradat/detail/{id}', [PrajuruBanjarController::class, 'detail'])->name('detail-prajuru-banjar-adat');
 
 //Profile
@@ -121,7 +125,9 @@ Route::post('profile/crop', [UserController::class, 'crop'])->name('crop-picture
 Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('update-profile');
 
 //Surat Keluar
-Route::get('/surat/keluar', [SuratKeluarController::class, 'index'])->name('dashboard-surat-keluar');
+Route::get('/surat/keluar', [DashboardSuratKeluarController::class, 'index'])->name('dashboard-surat-keluar');
+
+//Surat Keluar Panitia
 Route::get('/surat/keluar/panitia', [SuratKeluarPanitiaController::class, 'index'])->name('home-surat-keluar-panitia');
 Route::get('/surat/keluar/panitia/create', [SuratKeluarPanitiaController::class, 'create'])->name('create-surat-keluar-panitia');
 Route::post('/surat/keluar/panitia/add', [SuratKeluarPanitiaController::class, 'store'])->name('add-surat-keluar-panitia');
@@ -131,4 +137,29 @@ Route::get('/surat/keluar/panitia/detail/waiting/{id}', [SuratKeluarPanitiaContr
 Route::get('/surat/keluar/panitia/detail/inprogress/{id}', [SuratKeluarPanitiaController::class, 'showinprogress'])->name('detail-surat-keluar-panitia-inprogress');
 Route::get('/surat/keluar/panitia/lepihan/{id}', [SuratKeluarPanitiaController::class, 'showlepihan'])->name('lampiran-surat-keluar-panitia');
 Route::get('/surat/keluar/panitia/cetak/{id}', [SuratKeluarPanitiaController::class, 'cetak'])->name('cetak-surat-keluar-panitia');
+Route::get('/surat/keluar/panitia/daftar/cetak', [SuratKeluarPanitiaController::class, 'list'])->name('cetak-daftar-surat-keluar-panitia');
 Route::get('/surat/keluar/panitia/response/inprogress/{id}', [SuratKeluarPanitiaController::class, 'inprogress'])->name('inprogress-surat-keluar-panitia');
+
+//Surat Keluar Non-Panitia
+Route::get('/surat/keluar/non-panitia', [SuratKeluarController::class, 'index'])->name('home-surat-keluar-non-panitia');
+Route::get('/surat/keluar/non-panitia/create', [SuratKeluarController::class, 'create'])->name('create-surat-keluar-non-panitia');
+Route::post('/surat/keluar/non-panitia/add', [SuratKeluarController::class, 'store'])->name('add-surat-keluar-non-panitia');
+Route::get('/surat/keluar/non-panitia/edit/{id}', [SuratKeluarController::class, 'edit'])->name('edit-surat-keluar-non-panitia');
+Route::post('/surat/keluar/non-panitia/update/{id}', [SuratKeluarController::class, 'update'])->name('update-surat-keluar-non-panitia');
+Route::get('/surat/keluar/non-panitia/detail/waiting/{id}', [SuratKeluarController::class, 'show'])->name('detail-surat-keluar-non-panitia');
+Route::get('/surat/keluar/non-panitia/detail/inprogress/{id}', [SuratKeluarController::class, 'showinprogress'])->name('detail-surat-keluar-non-panitia-inprogress');
+Route::get('/surat/keluar/non-panitia/lepihan/{id}', [SuratKeluarController::class, 'showlepihan'])->name('lampiran-surat-keluar-non-panitia');
+Route::get('/surat/keluar/non-panitia/cetak/{id}', [SuratKeluarController::class, 'cetak'])->name('cetak-surat-keluar-non-panitia');
+Route::get('/surat/keluar/non-panitia/daftar/cetak', [SuratKeluarController::class, 'list'])->name('cetak-daftar-surat-keluar-non-panitia');
+Route::get('/surat/keluar/non-panitia/response/inprogress/{id}', [SuratKeluarController::class, 'inprogress'])->name('inprogress-surat-keluar-panitia');
+
+//Surat Masuk
+Route::get('/surat/masuk', [SuratMasukController::class, 'index'])->name('dashboard-surat-masuk');
+Route::get('/surat/masuk/create', [SuratMasukController::class, 'create'])->name('create-surat-masuk');
+Route::post('/surat/masuk/add', [SuratMasukController::class, 'store'])->name('add-surat-masuk');
+Route::get('/surat/masuk/edit/{id}', [SuratMasukController::class, 'edit'])->name('edit-surat-masuk');
+Route::get('/surat/masuk/detail/{id}', [SuratMasukController::class, 'show'])->name('detail-surat-masuk');
+Route::post('/surat/masuk/update/{id}', [SuratMasukController::class, 'update'])->name('update-surat-masuk');
+Route::get('/surat/masuk/file/{id}', [SuratMasukController::class, 'showfile'])->name('file-surat-masuk');
+Route::get('/surat/masuk/delete/{id}', [SuratMasukController::class, 'destroy'])->name('delete-surat-masuk');
+Route::get('/surat/masuk/daftar/cetak', [SuratMasukController::class, 'list'])->name('cetak-daftar-surat-masuk');

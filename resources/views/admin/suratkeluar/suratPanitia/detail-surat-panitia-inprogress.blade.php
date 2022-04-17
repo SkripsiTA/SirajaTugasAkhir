@@ -116,6 +116,7 @@
                         </div>
                         <div class="col-2 text-right">
                             <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-history"></i></a>
+                            <a href="{{ route('edit-surat-keluar-panitia', $suratkeluarpanitia->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-edit"></i></a>
                             <a href="{{ route('cetak-surat-keluar-panitia', $suratkeluarpanitia->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary" target="_blank"><i class="fa fa-print"></i></a>
                             <a href="#" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-download"></i></a>
                         </div>
@@ -126,104 +127,104 @@
                         <tr>
                             <td><img  src="{{ asset('assets/img/logo-desa/'.$suratkeluarpanitia->desaadat->desadat_logo) }}" style="width:200px; height:200px;" alt="user-img"></td>
                             <td class="text-center">
-                                <font size="5" style="font-family: BaliSdbl;">Desa Adat {{ $suratkeluarpanitia->desaadat->desadat_nama }}</font><br>
-                                <font size="6" class="text-uppercase font-weight-bold" style="font-family: TimesNewRoman;">Desa Adat {{ $suratkeluarpanitia->desaadat->desadat_nama }}</font><br>
-                                <font size="3" class="text-uppercase font-weight-bold" style="font-family: TimesNewRoman;">Kecamatan {{ $suratkeluarpanitia->desaadat->kecamatan->name }} Kabupaten {{ $suratkeluarpanitia->desaadat->kecamatan->kabupaten->name }}</font><br>
-                                <font size="4" class="text-uppercase font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->tim_kegiatan }}</font><br>
-                                <font size="2" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->desaadat->desadat_alamat_kantor }}, {{ $suratkeluarpanitia->desaadat->desadat_telpon_kantor }}, {{ $suratkeluarpanitia->desaadat->desadat_wa_kontak_1 }}</font><br>
+                                <img  src="{{ asset('assets/img/aksara-bali/'.$suratkeluarpanitia->desaadat->desadat_aksara_bali) }}"  alt="user-img"><br>
+                                <font size="6" class="text-uppercase font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">Desa Adat {{ $suratkeluarpanitia->desaadat->desadat_nama }}</font><br>
+                                <font size="3" class="text-uppercase font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">Kecamatan {{ $suratkeluarpanitia->desaadat->kecamatan->name }} Kabupaten {{ $suratkeluarpanitia->desaadat->kecamatan->kabupaten->name }}</font><br>
+                                <font size="4" class="text-uppercase font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->tim_kegiatan }}</font><br>
+                                <font size="2" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->desaadat->desadat_alamat_kantor }}, {{ $suratkeluarpanitia->desaadat->desadat_telpon_kantor }}, {{ $suratkeluarpanitia->desaadat->desadat_wa_kontak_1 }}</font><br>
                             </td>
                             <td colspan="2"><hr></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><hr></td>
+                            <td colspan="2"><hr style="border-top: 2px solid black;"></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-right">
                                 @if($suratkeluarpanitia->tanggal_keluar != null)
-                                    <font size="3" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->desaadat->desadat_nama }}, {{ showDateTime($suratkeluarpanitia->tanggal_keluar, 'd F Y') }}</font><br><br>
+                                    <font size="3" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->desaadat->desadat_nama }}, {{ showDateTime($suratkeluarpanitia->tanggal_keluar, 'd F Y') }}</font><br><br>
                                 @endif
-                                <font size="3" style="font-family: TimesNewRoman;">Katur Majeng ring : <b>{{ $suratkeluarpanitia->pihak_penerima }}</font><br><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">Katur Majeng ring : <b>{{ $suratkeluarpanitia->pihak_penerima }}</font><br><br>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <font size="3" style="font-family: TimesNewRoman;">Nomor Surat &ensp;: {{ $suratkeluarpanitia->nomor_surat }}</font><br>
-                                <font size="3" style="font-family: TimesNewRoman;">Lepihan     &emsp;&emsp;&nbsp;: {{ $suratkeluarpanitia->lepihan }}</font><br>
-                                <font size="3" style="font-family: TimesNewRoman;">Parindikan  &ensp;&ensp;: {{ $suratkeluarpanitia->parindikan }}</font>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">Nomor Surat &ensp;: {{ $suratkeluarpanitia->nomor_surat }}</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">Lepihan     &emsp;&emsp;&nbsp;: {{ $suratkeluarpanitia->lepihan }}</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">Parindikan  &ensp;&ensp;: {{ $suratkeluarpanitia->parindikan }}</font>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td class="space">
-                                <font size="3" style="font-family: TimesNewRoman;" text-justify-content:left;>Ring-</font><br>
-                                <font size="3" style="font-family: TimesNewRoman;" text-justify-content:left;><span class="tab"></span>{{ $suratkeluarpanitia->desaadat->desadat_nama }}</font><br><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444" text-justify-content:left;>Ring-</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444" text-justify-content:left;><span class="tab"></span>{{ $suratkeluarpanitia->desaadat->desadat_nama }}</font><br><br>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <font size="5" style="font-family: BaliSdbl;">Om Swastyastu</font><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">Om Swastyastu</font><br><br>
+                                <img src="{{ asset('assets/img/aksara-bali/om-swastyastu.png') }}" style="height: 64px;" alt="..."><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">Om Swastyastu</font><br><br>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 @if($suratkeluarpanitia->pamahbah_surat != null)
-                                    <font size="3" style="font-family: TimesNewRoman;" class="justify"><span class="tab"></span>{{ $suratkeluarpanitia->pamahbah_surat }}</font><br><br>
+                                    <p align="justify" size="3" style="font-family: TimesNewRoman; color:#444444;" class="justify"><span class="tab"></span>{{ $suratkeluarpanitia->pamahbah_surat }}</p><br><br>
                                 @endif
                                 @if($suratkeluarpanitia->daging_surat != null)
-                                    <font size="3" style="font-family: TimesNewRoman;" class="justify"><span class="tab"></span>{{ $suratkeluarpanitia->daging_surat }}</font><br>
+                                    <p align="justify" size="3" style="font-family: TimesNewRoman; color:#444444;" class="justify"><span class="tab"></span>{{ $suratkeluarpanitia->daging_surat }}</p><br>
                                 @endif
                                 @if($suratkeluarpanitia->tanggal_kegiatan_mulai != null && $suratkeluarpanitia->tanggal_kegiatan_berakhir != null)
-                                    <font size="3" style="font-family: TimesNewRoman;"><span class="tab"></span>Rahina : {{ showDateTime($suratkeluarpanitia->tanggal_kegiatan_mulai, 'l, d F Y') }} - {{ showDateTime($suratkeluarpanitia->tanggal_kegiatan_berakhir, 'l, d F Y') }}</font><br>
+                                    <font size="3" style="font-family: TimesNewRoman;" color="#444444"><span class="tab"></span>Rahina : {{ showDateTime($suratkeluarpanitia->tanggal_kegiatan_mulai, 'l, d F Y') }} - {{ showDateTime($suratkeluarpanitia->tanggal_kegiatan_berakhir, 'l, d F Y') }}</font><br>
                                 @endif
                                 @if($suratkeluarpanitia->tempat_kegiatan != null)
-                                    <font size="3" style="font-family: TimesNewRoman;"><span class="tab"></span>Genah : {{ $suratkeluarpanitia->tempat_kegiatan }}</font><br>
+                                    <font size="3" style="font-family: TimesNewRoman;" color="#444444"><span class="tab"></span>Genah : {{ $suratkeluarpanitia->tempat_kegiatan }}</font><br>
                                 @endif
                                 @if($suratkeluarpanitia->waktu_kegiatan_mulai != null)
-                                    <font size="3" style="font-family: TimesNewRoman;"><span class="tab"></span>Galah : {{ $suratkeluarpanitia->waktu_kegiatan_mulai }} - </font>
+                                    <font size="3" style="font-family: TimesNewRoman;" color="#444444"><span class="tab"></span>Galah : {{ $suratkeluarpanitia->waktu_kegiatan_mulai }} - </font>
                                     @if ($suratkeluarpanitia->waktu_kegiatan_selesai == null)
-                                        <font size="3" style="font-family: TimesNewRoman;">Puput (WITA)</font><br>
+                                        <font size="3" style="font-family: TimesNewRoman;" color="#444444">Puput (WITA)</font><br>
                                     @else
-                                        <font size="3" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->waktu_kegiatan_selesai }}</font><br>
+                                        <font size="3" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->waktu_kegiatan_selesai }}</font><br>
                                     @endif
                                 @endif
                                 @if($suratkeluarpanitia->busana != null)
-                                    <font size="3" style="font-family: TimesNewRoman;"><span class="tab"></span>Wastra : {{ $suratkeluarpanitia->busana }}</font><br>
+                                    <font size="3" style="font-family: TimesNewRoman;" color="#444444"><span class="tab"></span>Wastra : {{ $suratkeluarpanitia->busana }}</font><br>
                                 @endif
                                 @if($suratkeluarpanitia->pamuput_surat != null)
-                                    <br><font size="3" style="font-family: TimesNewRoman;" class="justify"><span class="tab"></span>{{ $suratkeluarpanitia->pamuput_surat }}</font><br><br>
+                                    <br><p align="justify" size="3" style="font-family: TimesNewRoman; color:#444444;" class="justify"><span class="tab"></span>{{ $suratkeluarpanitia->pamuput_surat }}</p><br><br>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">Om Santih, Santih, Santih Om</font><br>
-                                <font size="5" style="font-family: BaliSdbl;">Om Santih, Santih, Santih Om</font><br><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->tim_kegiatan }}</font><br><br><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">Om Santih, Santih, Santih Om</font><br>
+                                <img src="{{ asset('assets/img/aksara-bali/om-santih,santih,santih-om.png') }}" style="height: 48px; width:430px;" alt="..."><br><br><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->tim_kegiatan }}</font><br><br><br>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <font size="3" style="font-family: TimesNewRoman;">Ketua</font><br><br><br><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasipanitia[1]->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">Ketua</font><br><br><br><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->validasipanitia[1]->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
                             </td>
                             <td class="text-right">
-                                <font size="3" style="font-family: TimesNewRoman;">Sekretaris</font><br><br><br><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasipanitia[0]->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">Sekretaris</font><br><br><br><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->validasipanitia[0]->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2"  class="text-center" >
-                                <font size="3" style="font-family: TimesNewRoman;">Bendesa</font><br><br><br><br><br>
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">{{ $suratkeluarpanitia->validasiprajurudesa[0]->prajurudesaadat->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">Bendesa</font><br><br><br><br><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">{{ $suratkeluarpanitia->validasiprajurudesa[0]->prajurudesaadat->kramamipil->cacahkramamipil->penduduk->nama ?? 'Belum Tertera' }}</font><br>
                             </td>
                         </tr>
                         <tr>
                             @if($suratkeluarpanitia->tumusan != null)
                             <td colspan="2">
                                 <hr class="my-4" />
-                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;">Tumusan</font><br>
-                                <font size="3" style="font-family: TimesNewRoman;">&ensp;&nbsp; 1.&nbsp;{{ $suratkeluarpanitia->tumusan }}</font><br>
+                                <font size="3" class="font-weight-bold" style="font-family: TimesNewRoman;" color="#444444">Tumusan</font><br>
+                                <font size="3" style="font-family: TimesNewRoman;" color="#444444">&ensp;&nbsp; 1.&nbsp;{{ $suratkeluarpanitia->tumusan }}</font><br>
                             </td>
                             @endif
                         </tr>

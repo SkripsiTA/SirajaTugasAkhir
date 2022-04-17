@@ -18,11 +18,16 @@ class NomorSurat extends Model
 
     public function suratkeluar()
     {
-        return $this->hasMany(SuratKeluar::class);
+        return $this->hasMany(SuratKeluar::class, 'surat_keluar_id', 'surat_keluar_id')->latest();
     }
 
     public function desaadat()
     {
         return $this->belongsTo(DesaAdat::class, 'desa_adat_id', 'desa_adat_id');
+    }
+
+    public function suratmasuk()
+    {
+        return $this->hasMany(SuratMasuk::class);
     }
 }

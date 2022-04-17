@@ -24,6 +24,14 @@ class SuratKeluarPanitiaController extends Controller
         return view('admin.suratkeluar.suratPanitia.home-surat-panitia', compact('suratkeluarwaiting', 'suratkeluarinprogress', 'suratkeluarverified', 'suratkeluarrejected'));
     }
 
+    public function list()
+    {
+        $suratkeluar = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('desa_adat_id', Auth::user()->desa_adat_id)->get();
+
+        // dd($suratmasuk);
+        return view('admin.suratkeluar.suratPanitia.cetak-daftar-surat-keluar-panitia', compact('suratkeluar'));
+    }
+
     public function create()
     {
         $nomorsurat = NomorSurat::with('desaadat')->where('desa_adat_id', Auth::user()->desa_adat_id)->get();
@@ -154,7 +162,7 @@ class SuratKeluarPanitiaController extends Controller
     {
         // dd($request->all());
         $suratkeluar = SuratKeluar::with(['nomorsurat','desaadat', 'validasipanitia', 'validasiprajurudesa'])->findOrFail($id);
-        
+
         // $suratkeluar->tanggal_kegiatan = json_encode([$request->waktu_mulai, $request->waktu_berakhir]);
         // dd($suratkeluar->tanggal_kegiatan);
 

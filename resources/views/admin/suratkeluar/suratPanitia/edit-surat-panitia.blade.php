@@ -90,7 +90,7 @@
                               <div class="col-lg-8">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Nomor Surat<i class="text-danger text-sm text-bold">*</i></label>
-                                    <input type="text" name="nomor_surat_keluar" class="form-control" placeholder="otomatis" value="{{ $suratkeluarpanitia->nomor_surat }}" readonly>
+                                    <input type="text" name="nomor_surat_keluar" class="form-control" placeholder="otomatis" value="{{ $suratkeluarpanitia->nomor_surat }}">
                                 </div>
                               </div>
                               <div class="col-lg-4">

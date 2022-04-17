@@ -54,7 +54,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="icons.html">
+                    <a class="nav-link" href="{{ route('dashboard-surat-masuk') }}">
                     <i class="ni ni-email-83"></i>
                     <span class="nav-link-text">Surat Masuk</span>
                     </a>
@@ -63,12 +63,6 @@
                     <a class="nav-link" href="{{ route('dashboard-surat-keluar') }}">
                     <i class="ni ni-send"></i>
                     <span class="nav-link-text">Surat Keluar</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="icons.html">
-                    <i class="ni ni-folder-17"></i>
-                    <span class="nav-link-text">Manajemen Arsip Surat</span>
                     </a>
                 </li>
             </ul>

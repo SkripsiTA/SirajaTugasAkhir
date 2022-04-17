@@ -130,6 +130,7 @@
                                                                 <button type="submit" class="btn btn-sm btn-flat btn-danger nonaktif" data-id="{{ $data->prajuru_banjar_adat_id }}"><i class="fa fa-toggle-off"></i></button>
                                                             @else
                                                                 <a href="{{ route('detail-prajuru-banjar-adat', $data->prajuru_banjar_adat_id) }}" class="view btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i></a>
+                                                                <button type="submit" class="btn btn-sm btn-flat btn-success aktif" data-id="{{ $data->prajuru_banjar_adat_id }}"><i class="fa fa-toggle-on"></i></button>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -201,7 +202,7 @@
 
             swal({
                 title: "Apakah yakin menonaktifkan ?",
-                text: "Data prajuru tidak dapat diubah lagi!",
+                text: "Data prajuru akan dinonaktifkan!",
                 icon: "warning",
                 buttons: ["Batal", "Nonaktifkan"],
                 dangerMode: true,
@@ -214,6 +215,31 @@
                     });
                 } else {
                     swal("Batal! Data prajuru desa aktif!", {
+                        icon: "error",
+                    });
+                }
+            });
+    });
+
+    $('.aktif').click(function(e) {
+        e.preventDefault();
+        var prajurubanjarid = $(this).attr('data-id');
+
+            swal({
+                title: "Apakah yakin mengaktifkan ?",
+                text: "Data prajuru diaktifkan kembali!",
+                icon: "warning",
+                buttons: ["Batal", "Aktifkan"],
+                successMode: true,
+            })
+            .then((isConfirm) => {
+                if (isConfirm) {
+                    window.location ="/prajuru/banjaradat/aktif/"+prajurubanjarid+""
+                    swal("Berhasil! Data prajuru desa telah diaktifkan!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Batal! Data prajuru desa nonaktif!", {
                         icon: "error",
                     });
                 }

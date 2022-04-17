@@ -140,6 +140,16 @@ class PrajuruBanjarController extends Controller
         return redirect()->route('prajuru-banjar-adat')->with('success', 'Data berhasil dinonaktifkan!');
     }
 
+    public function aktif(Request $request, $id)
+    {
+        $updateprajurubanjar = PrajuruBanjarAdat::with(['banjaradat','kramamipil'])->findOrFail($id);
+        $updateprajurubanjar->status_prajuru_banjar_adat = 'aktif';
+        $updateprajurubanjar->save();
+        // dd($updateprajurudesa);
+
+        return redirect()->route('prajuru-banjar-adat')->with('success', 'Data berhasil dinonaktifkan!');
+    }
+
     public function detail($id)
     {
         $detailprajurubanjar = PrajuruBanjarAdat::with(['banjaradat','kramamipil'])->findOrFail($id);

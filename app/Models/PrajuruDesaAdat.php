@@ -37,4 +37,9 @@ class PrajuruDesaAdat extends Model
     {
         return $this->hasMany(DetailSuratKeluarPanitia::class);
     }
+
+    public function suratmasuk()
+    {
+        return $this->hasMany(SuratMasuk::class);
+    }
 }

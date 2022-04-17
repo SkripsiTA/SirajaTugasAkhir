@@ -78,6 +78,8 @@
                             </form>
                         </div>
                         <div class="float-right">
+                            <a href="{{ route('cetak-daftar-surat-keluar-panitia') }}" type="button" class="btn btn-md btn-danger" target="_blank"><i class="fa fa-print"></i>
+                            PDF</a>
                             <a href="{{ route('create-surat-keluar-panitia') }}" type="button" class="btn btn-md btn-primary"><i class="fa fa-plus"></i>
                             Tambah</a>
                         </div>
@@ -130,6 +132,7 @@
                                                     $i = 1;
                                                 @endphp
                                                 @foreach ($suratkeluarwaiting as $data)
+                                                @if($data->desa_adat_id == Auth::user()->desa_adat_id)
                                                 <tr>
                                                     <td> {{ $i++ }} </td>
                                                     <td>{{ $data->nomor_surat }}</td>
@@ -149,6 +152,7 @@
                                                     </td>
 
                                                 </tr>
+                                                @endif
                                                 @endforeach
                                                 </tbody>
                                             </table>
@@ -189,6 +193,7 @@
                                                         $i = 1;
                                                     @endphp
                                                     @foreach ($suratkeluarinprogress as $data)
+                                                    @if($data->desa_adat_id == Auth::user()->desa_adat_id)
                                                     <tr>
                                                         <td> {{ $i++ }} </td>
                                                         <td>{{ $data->nomor_surat }}</td>
@@ -208,6 +213,7 @@
                                                         </td>
 
                                                     </tr>
+                                                    @endif
                                                     @endforeach
                                                     </tbody>
                                                 </table>
@@ -248,6 +254,7 @@
                                                         $i = 1;
                                                     @endphp
                                                     @foreach ($suratkeluarverified as $data)
+                                                    @if($data->desa_adat_id == Auth::user()->desa_adat_id)
                                                     <tr>
                                                         <td> {{ $i++ }} </td>
                                                         <td>{{ $data->nomor_surat }}</td>
@@ -267,6 +274,7 @@
                                                         </td>
 
                                                     </tr>
+                                                    @endif
                                                     @endforeach
                                                     </tbody>
                                                 </table>
@@ -307,6 +315,7 @@
                                                         $i = 1;
                                                     @endphp
                                                     @foreach ($suratkeluarrejected as $data)
+                                                    @if($data->desa_adat_id == Auth::user()->desa_adat_id)
                                                     <tr>
                                                         <td> {{ $i++ }} </td>
                                                         <td>{{ $data->nomor_surat }}</td>
@@ -324,8 +333,8 @@
                                                         <td class="text-right">
                                                             <a href="{{ route('detail-surat-keluar-panitia', $data->surat_keluar_id) }}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-eye"></i></a>
                                                         </td>
-
                                                     </tr>
+                                                    @endif
                                                     @endforeach
                                                     </tbody>
                                                 </table>
