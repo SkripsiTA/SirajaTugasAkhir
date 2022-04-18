@@ -147,7 +147,7 @@ class PrajuruBanjarController extends Controller
         $updateprajurubanjar->save();
         // dd($updateprajurudesa);
 
-        return redirect()->route('prajuru-banjar-adat')->with('success', 'Data berhasil dinonaktifkan!');
+        return redirect()->route('prajuru-banjar-adat')->with('success', 'Data berhasil diaktifkan!');
     }
 
     public function detail($id)

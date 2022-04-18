@@ -90,7 +90,7 @@
                               <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Master Surat<i class="text-danger text-sm text-bold">*</i></label>
-                                    <select name="master_surat" class="form-control" id="master_surat" style="height: 100%">
+                                    <select name="master_surat" class="form-control" id="master_surat" style="height: 100%" required>
                                       <option value="{{ $suratmasuk->master_surat_id }}">{{ $suratmasuk->nomorsurat->kode_nomor_surat }}</option>
                                       @foreach ($nomorsurat as $data)
                                           <option value="{{ $data->master_surat_id }}" data-id="{{ $data->kode_nomor_surat }}">{{ $data->kode_nomor_surat }}</option>
@@ -101,19 +101,19 @@
                               <div class="col-lg-8">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Nomor Surat<i class="text-danger text-sm text-bold">*</i></label>
-                                    <input type="text" name="nomor_surat_masuk" class="form-control" id="nomor_surat_masuk" placeholder="Nomor Surat" value="{{ $suratmasuk->nomor_surat }}">
+                                    <input type="text" name="nomor_surat_masuk" class="form-control" id="nomor_surat_masuk" placeholder="Nomor Surat" value="{{ $suratmasuk->nomor_surat }}" required>
                                 </div>
                               </div>
                               <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Parindikan<i class="text-danger text-sm text-bold">*</i></label>
-                                    <input type="text" name="parindikan" class="form-control" id="parindikan" placeholder="Parindikan" value="{{ $suratmasuk->perihal }}">
+                                    <input type="text" name="parindikan" class="form-control" id="parindikan" placeholder="Parindikan" value="{{ $suratmasuk->perihal }}" required>
                                 </div>
                               </div>
                               <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Mawit Saking<i class="text-danger text-sm text-bold">*</i></label>
-                                    <input type="text" name="mawit_saking" class="form-control" id="mawit_saking" placeholder="Mawit Saking" value="{{ $suratmasuk->asal_surat }}">
+                                    <input type="text" name="mawit_saking" class="form-control" id="mawit_saking" placeholder="Mawit Saking" value="{{ $suratmasuk->asal_surat }}" required>
                                 </div>
                               </div>
                               <div class="col-12">
@@ -123,7 +123,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                         </div>
-                                        <input name="tanggal_surat" class="form-control datepicker1" placeholder="Tanggal Surat" type="text" value="{{ $suratmasuk->tanggal_surat }}">
+                                        <input name="tanggal_surat" class="form-control datepicker1" placeholder="Tanggal Surat" type="text" value="{{ $suratmasuk->tanggal_surat }}" required>
                                     </div>
                                 </div>
                               </div>
@@ -176,7 +176,7 @@
                           <div class="col-lg-8">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-country">Surat<i class="text-danger text-sm text-bold">* File dalam format pdf (maksimal 25 MB)</i></label>
-                                <input type="file" name="file_surat" class="form-control" placeholder="Lepihan Surat" value="" accept="application/pdf">
+                                <input type="file" name="file_surat" class="form-control" placeholder="Lepihan Surat" value="" accept="application/pdf" required>
                             </div>
                         </div>
                         </div>

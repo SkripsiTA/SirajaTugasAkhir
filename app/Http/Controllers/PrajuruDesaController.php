@@ -148,7 +148,7 @@ class PrajuruDesaController extends Controller
         $updateprajurudesa->save();
         // dd($updateprajurudesa);
 
-        return redirect('/prajuru/desaadat')->with('success', 'Data berhasil dinonaktifkan!');
+        return redirect('/prajuru/desaadat')->with('success', 'Data berhasil diaktifkan!');
     }
 
     public function detail($id)

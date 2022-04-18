@@ -228,7 +228,7 @@
             swal({
                 title: "Apakah yakin mengaktifkan ?",
                 text: "Data prajuru diaktifkan kembali!",
-                icon: "warning",
+                icon: "success",
                 buttons: ["Batal", "Aktifkan"],
                 successMode: true,
             })

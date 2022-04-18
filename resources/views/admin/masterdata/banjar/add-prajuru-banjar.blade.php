@@ -158,8 +158,8 @@
                               </div>
                           </div>
                       </div>
-                      <hr class="my-4" />
-                      <h6 class="heading-small text-muted mb-4">Data Akun</h6>
+                      {{--  <hr class="my-4" />
+                      <h6 class="heading-small text-muted mb-4">Data Akun</h6>  --}}
                       <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-12">
@@ -170,8 +170,8 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-email">Password</label>
-                                    <input type="password" name="password" class="password form-control" id="password" placeholder="Password" readonly>
+                                    {{--  <label class="form-control-label" for="input-email">Password</label>  --}}
+                                    <input type="hidden" name="password" class="password form-control" id="password" placeholder="Password" readonly>
                                 </div>
                             </div>
                         </div>

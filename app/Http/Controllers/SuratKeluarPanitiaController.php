@@ -17,10 +17,10 @@ class SuratKeluarPanitiaController extends Controller
 {
     public function index()
     {
-        $suratkeluarwaiting = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Menunggu Respon')->paginate(10);
-        $suratkeluarinprogress = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Sedang Diproses')->paginate(10);
-        $suratkeluarverified = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Telah Dikonfirmasi')->paginate(10);
-        $suratkeluarrejected = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Dibatalkan')->paginate(10);
+        $suratkeluarwaiting = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Menunggu Respon')->whereNotNull('tim_kegiatan')->paginate(10);
+        $suratkeluarinprogress = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Sedang Diproses')->whereNotNull('tim_kegiatan')->paginate(10);
+        $suratkeluarverified = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Telah Dikonfirmasi')->whereNotNull('tim_kegiatan')->paginate(10);
+        $suratkeluarrejected = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('status', 'Dibatalkan')->whereNotNull('tim_kegiatan')->paginate(10);
         return view('admin.suratkeluar.suratPanitia.home-surat-panitia', compact('suratkeluarwaiting', 'suratkeluarinprogress', 'suratkeluarverified', 'suratkeluarrejected'));
     }
 
@@ -234,7 +234,7 @@ class SuratKeluarPanitiaController extends Controller
         $validasiprajurudesa->prajuru_desa_adat_id = $request->bendesa_adat;
         $validasiprajurudesa->save();
 
-        return redirect()->route('home-surat-keluar-panitia')->with(['success' => 'Data surat sedang diproses!']);
+        return redirect()->route('detail-surat-keluar-panitia', $suratkeluar->surat_keluar_id)->with(['success' => 'Data surat sedang diproses!']);
     }
 
     public function cetak($id)

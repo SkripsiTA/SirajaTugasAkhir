@@ -313,6 +313,9 @@
                     $("#btn_save").html('Submit');
                     $("#btn_save").attr("disabled", false);
                     swal("Sukses!", "Data berhasil ditambahkan!", "success");
+                },
+                error: function (request, status, error) {
+                    swal(request.responseText);
                 }
             });
         });
