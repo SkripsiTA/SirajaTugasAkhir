@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DesaAdat;
 use App\Models\KramaMipil;
 use App\Models\NomorSurat;
 use App\Models\SuratKeluar;
@@ -44,14 +45,15 @@ class SuratKeluarController extends Controller
         $bulanromawi = array("", "I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
         $nomor_surat = SuratKeluar::max('surat_keluar_id');
         // $nomor_surat = NomorSurat::with('suratkeluar')->get();
-        $desa = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('desa_adat_id', Auth::user()->desa_adat_id)->get();
+        // $desa = SuratKeluar::with(['nomorsurat', 'desaadat'])->where('desa_adat_id', Auth::user()->desa_adat_id)->get();
+        $desa = Auth::user()->desaadat;
         $nomor = 1;
         $kode_surat = NomorSurat::where('master_surat_id', '1')->get();
 
         $data = [
             'last_id' => sprintf("%03s", abs($nomor_surat + 1)),
             'kode_surat' => $kode_surat[0]->kode_nomor_surat,
-            'kode_desa' => $desa[0]->desaadat->desadat_kode_surat,
+            'kode_desa' => $desa->desadat_kode_surat,
             'bulan' => $bulanromawi[date('n')],
             'tahun' => date('Y'),
         ];

@@ -280,7 +280,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-email">NIK dan Nama Lengkap<i class="text-danger text-sm text-bold">*</i></label>
-                                                <select name="kramamipil_id" class="kramamipil_id form-control" id="kramamipil_id" style="height: 100%" required>
+                                                <select name="kramamipil_id" class="kramamipil form-control" id="kramamipil_id" style="height: 100%" required>
                                                   <option value="">-- Pilih Krama --</option>
                                                   @foreach ($kramamipil as $data)
                                                       <option value="{{ $data->krama_mipil_id }}">{{ $data->cacahkramamipil->penduduk->nik }} - {{ $data->cacahkramamipil->penduduk->nama }}</option>
@@ -347,7 +347,7 @@
     <!-- Select2 -->
     <script>
         $(document).ready(function() {
-            $('#kramamipil_id').select2();
+            $('.kramamipil').select2();
         });
     </script>
 

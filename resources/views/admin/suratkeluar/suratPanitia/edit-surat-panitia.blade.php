@@ -235,9 +235,14 @@
                                     <label class="form-control-label" for="input-email">Bendesa Adat<i class="text-danger text-sm text-bold">*</i></label>
                                     <select name="bendesa_adat" class="bendesa_adat form-control" id="bendesa_adat" style="height: 100%">
                                         {{--  <option value="">-- Pilih Bendesa --</option>  --}}
-                                        @if($prajurudesa[0]->jabatan == 'bendesa')  --}}
+                                        {{--  @if($prajurudesa[0]->jabatan == 'bendesa')
                                             <option value="{{ $prajurudesa[0]->prajuru_desa_adat_id }}">{{ $prajurudesa[0]->kramamipil->cacahkramamipil->penduduk->nik }} - {{ $prajurudesa[0]->kramamipil->cacahkramamipil->penduduk->nama }}</option>
+                                        @endif  --}}
+                                        @foreach($prajurudesa as $data)
+                                        @if($data->jabatan == 'bendesa')
+                                            <option value="{{ $data->prajuru_desa_adat_id }}">{{ $data->kramamipil->cacahkramamipil->penduduk->nik }} - {{ $data->kramamipil->cacahkramamipil->penduduk->nama }}</option>
                                         @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
