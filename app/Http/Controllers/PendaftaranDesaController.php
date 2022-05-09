@@ -118,11 +118,17 @@ class PendaftaranDesaController extends Controller
         $filenames = time().'.'.$logo->getClientOriginalExtension();
         $logo->move('assets/img/logo-desa/', $filenames);
 
+        $aksara = $request->file('aksara_bali');
+        $fileaksara = time().'.'.$aksara->getClientOriginalExtension();
+        $aksara->move('assets/img/aksara-bali/', $fileaksara);
+
         $desaadat = DesaAdat::findOrFail($request->desa);
         $desaadat->desadat_nomor_register = $id;
         $desaadat->desa_adat_id = $request->desa;
         $desaadat->kecamatan_id = $request->kecamatan;
         $desaadat->desadat_kode_surat = $request->kode_nomor_surat;
+        $desaadat->desadat_kantor_lat = $request->latitude;
+        $desaadat->desadat_kantor_long = $request->longitude;
         $desaadat->desadat_kode_pos = $request->kode_pos;
         $desaadat->desadat_status_aktif = $request->status_desa;
         $desaadat->desadat_alamat_kantor = $request->alamat_desa;
@@ -136,7 +142,9 @@ class PendaftaranDesaController extends Controller
         $desaadat->desadat_sebutan_pemimpin = $request->sebutan_pemimpin;
         $desaadat->desadat_file_struktur_pem = $filename;
         $desaadat->desadat_logo = $filenames;
+        $desaadat->desadat_aksara_bali = $fileaksara;
         $desaadat->desadat_status_register = 'Pending';
+        $desaadat->desadat_keterangan = null;
         $desaadat->save();
 
         $prajurudesaadat = new PrajuruDesaAdat;

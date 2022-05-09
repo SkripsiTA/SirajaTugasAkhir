@@ -41,7 +41,7 @@ Route::post('/loginsession', [AuthController::class, 'loginsession'])->name('log
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Middleware Admin
-Route::group(['middleware' => ['auth','cek_login:Bendesa, Admin']], function () {
+Route::group(['middleware' => ['auth','cek_login:Admin,Bendesa,Penyarikan']], function () {
     route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 });
 
@@ -49,8 +49,8 @@ Route::group(['middleware' => ['auth','cek_login:Bendesa, Admin']], function () 
 //     route::get('/kades', [DashboardController::class, 'index'])->name('kades');
 // });
 
-Route::group(['middleware' => ['auth', 'cek_login:Kelihan Banjar Adat']], function () {
-    route::get('/banjar', [DashboardController::class, 'index'])->name('kelihan-banjar');
+Route::group(['middleware' => ['auth', 'cek_login:Panitia']], function () {
+    route::get('/panitia', [DashboardController::class, 'index'])->name('panitia');
 });
 
 // Middleware Superadmin
@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth', 'cek_login:Super Admin']], function () {
     route::get('/superadmin/desa/berhasil/{id}', [DashboardSuperadminController::class, 'update'])->name('pendaftaran-desa-berhasil');
     route::post('/superadmin/desa/tolak', [DashboardSuperadminController::class, 'tolak'])->name('pendaftaran-desa-ditolak');
     route::get('/superadmin/desa/detail/tolak/{id}', [DashboardSuperadminController::class, 'showtolak'])->name('detail-desa-tolak');
+    route::get('/superadmin/search', [DashboardSuperadminController::class, 'search'])->name('search-data-desa');
 });
 
 // //Middleware User

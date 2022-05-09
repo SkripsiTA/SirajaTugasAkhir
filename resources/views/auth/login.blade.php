@@ -110,7 +110,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                         </div>
-                                        <input class="form-control" name="email" placeholder="Email" type="email">
+                                        <input class="form-control" name="email" placeholder="Email atau Nomor Telepon" type="text">
                                     </div>
                                     @if($errors->has('email'))
                                         <span class="error">{{ $errors->first('email') }}</span>

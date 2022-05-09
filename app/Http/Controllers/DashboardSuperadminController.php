@@ -35,9 +35,66 @@ class DashboardSuperadminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function search(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = DesaAdat::with(['kecamatan', 'user'])
+                    ->where('desa_adat_id', 'like', '%'.$query.'%')
+                    ->orWhere('desadat_nama', 'like', '%'.$query.'%')
+                    ->orWhere('kecamatan.name', 'like', '%'.$query.'%')
+                    ->orWhere('desadat_status_aktif', 'like', '%'.$query.'%')
+                    ->orWhere('desadat_nomor_register', 'like', '%'.$query.'%')
+                    ->orWhere('desadat_email', 'like', '%'.$query.'%')
+                    ->orderBy('desa_adat_id', 'desc')
+                    ->get();
+            } else {
+                $data  = DesaAdat::with(['kecamatan', 'user'])
+                    ->orderBy('desa_adat_id', 'desc')
+                    ->get();
+            }
+            $total_data = $data->count();
+            if ($total_data > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+                    <tr>
+                        <td>'.$data->firstItem()+$row.'</td>
+                        <td>'.$row->desa_adat_id.'</td>
+                        <th scope="row">'.$row->desadat_nama.'</th>
+                        <td>'.$row->kecamatan->name.'</td>
+                        <td>'.$row->kecamatan->kabupaten->name.'</td>
+                        <td>
+                            @if ('.$row->desadat_status_aktif.' == "1")
+                            <span class="right badge badge-info">Aktif</span>
+                            @else
+                            <span class="right badge badge-secondary">Tidak Aktif</span>
+                            @endif
+                        </td>
+                        <td>'.$row->desadat_nomor_register.'</td>
+                        <td>
+                            <span class="right badge badge-warning">'.$row->desadat_status_register.'</span>
+                        </td>
+                        <td>'.$row->desadat_email.'</td>
+
+                    </tr>
+                    ';
+                }
+            } else {
+                $output = '
+                    <tr>
+                        <td align="center" colspan="5">Data Tidak Ditemukan</td>
+                    </tr>
+                ';
+            }
+            $data = array(
+                'table_data' => $output,
+                'total' => $total_data,
+            );
+
+            echo json_encode($data);
+        }
     }
 
     /**
@@ -96,6 +153,7 @@ class DashboardSuperadminController extends Controller
         $pendudukid = KramaMipil::with('cacahkramamipil.penduduk')->findOrFail($desaadatpending->prajurudesaadat[0]->krama_mipil_id);
         $prajurudesaakun->penduduk_id = $pendudukid->cacahkramamipil->penduduk->penduduk_id;
         $prajurudesaakun->email = $desaadatpending->desadat_email;
+        $prajurudesaakun->nomor_telepon = $desaadatpending->desadat_wa_kontak_1;
         $prajurudesaakun->password = Hash::make($desaadatpending->desadat_nama);
         $prajurudesaakun->role = 'Bendesa';
         $prajurudesaakun->save();

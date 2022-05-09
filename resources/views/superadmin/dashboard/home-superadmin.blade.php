@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/argon.min.css?v=1.2.0') }}" type="text/css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -90,7 +90,29 @@
                                         <div class="card">
                                             <!-- Card header -->
                                             <div class="card-header border-0">
-                                            <h3 class="mb-0">Data Desa</h3>
+                                                <div class="col-lg-12">
+                                                    <div class="float-left">
+                                                        <h3 >Data Desa</h3>
+                                                    </div>
+
+                                                    <div class="float-right">
+                                                        <!-- Search form -->
+                                                        <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+                                                        <div class="form-group mb-0">
+                                                            <div class="input-group input-group-alternative input-group-merge">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                            </div>
+                                                            <input class="search form-control" name="search" id="search" placeholder="Search" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <!-- Light table -->
                                             <div class="table-responsive">
@@ -101,6 +123,7 @@
                                                     <th scope="col" class="sort" data-sort="name">Kode Desa</th>
                                                     <th scope="col" class="sort" data-sort="name">Nama Desa</th>
                                                     <th scope="col" class="sort" data-sort="budget">Kecamatan</th>
+                                                    <th scope="col" class="sort" data-sort="budget">Kabupaten</th>
                                                     <th scope="col" class="sort" data-sort="status">Status</th>
                                                     <th scope="col">Nomor Register</th>
                                                     <th scope="col">Status Register</th>
@@ -120,6 +143,7 @@
                                                     <td>{{ $data->desa_adat_id }}</td>
                                                     <th scope="row">{{ $data->desadat_nama }}</th>
                                                     <td>{{ $data->kecamatan->name }}</td>
+                                                    <td>{{ $data->kecamatan->kabupaten->name }}</td>
                                                     <td>
                                                         @if ($data->desadat_status_aktif == "1")
                                                         <span class="right badge badge-info">Aktif</span>
@@ -129,16 +153,16 @@
                                                     </td>
                                                     <td>{{ $data->desadat_nomor_register }}</td>
                                                     <td>
-                                                        <span class="right badge badge-danger">{{ $data->desadat_status_register }}</span>
+                                                        <span class="right badge badge-warning">{{ $data->desadat_status_register }}</span>
                                                     </td>
                                                     <td>{{ $data->desadat_email }}</td>
                                                     <td class="text-right">
                                                         <a href="{{ route('konfirm-pendaftaran-desa', $data->desa_adat_id) }}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-check"></i></a>
                                                     </td>
 
-                                                    </tr>
+                                                </tr>
 
-                                                    @endforeach
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                             </div>
@@ -167,6 +191,7 @@
                                                         <th scope="col" class="sort" data-sort="name">Kode Desa</th>
                                                         <th scope="col" class="sort" data-sort="name">Nama Desa</th>
                                                         <th scope="col" class="sort" data-sort="budget">Kecamatan</th>
+                                                        <th scope="col" class="sort" data-sort="budget">Kabupaten</th>
                                                         <th scope="col" class="sort" data-sort="status">Status</th>
                                                         <th scope="col">Nomor Register</th>
                                                         <th scope="col">Status Register</th>
@@ -186,6 +211,7 @@
                                                         <td>{{ $data->desa_adat_id }}</td>
                                                         <th scope="row">{{ $data->desadat_nama }}</th>
                                                             <td>{{ $data->kecamatan->name }}</td>
+                                                            <td>{{ $data->kecamatan->kabupaten->name }}</td>
                                                             <td>
                                                                 @if ($data->desadat_status_aktif == "1")
                                                                 <span class="right badge badge-info">Aktif</span>
@@ -195,7 +221,7 @@
                                                             </td>
                                                             <td>{{ $data->desadat_nomor_register }}</td>
                                                             <td>
-                                                                <span class="right badge badge-danger">{{ $data->desadat_status_register }}</span>
+                                                                <span class="right badge badge-success">{{ $data->desadat_status_register }}</span>
                                                             </td>
                                                             <td>{{ $data->desadat_email }}</td>
                                                             <td class="text-right">
@@ -234,6 +260,7 @@
                                                         <th scope="col" class="sort" data-sort="name">Kode Desa</th>
                                                         <th scope="col" class="sort" data-sort="name">Nama Desa</th>
                                                         <th scope="col" class="sort" data-sort="budget">Kecamatan</th>
+                                                        <th scope="col" class="sort" data-sort="budget">Kabupaten</th>
                                                         <th scope="col" class="sort" data-sort="status">Status</th>
                                                         <th scope="col">Nomor Register</th>
                                                         <th scope="col">Status Register</th>
@@ -253,6 +280,7 @@
                                                         <td>{{ $data->desa_adat_id }}</td>
                                                         <th scope="row">{{ $data->desadat_nama }}</th>
                                                             <td>{{ $data->kecamatan->name }}</td>
+                                                            <td>{{ $data->kecamatan->kabupaten->name }}</td>
                                                             <td>
                                                                 @if ($data->desadat_status_aktif == "1")
                                                                 <span class="right badge badge-info">Aktif</span>
@@ -510,6 +538,31 @@
 
     </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            fetch_data();
+
+            function fetch_data(query = '') {
+                $.ajax({
+                    url:'{{ route('search-data-desa') }}',
+                    method:'GET',
+                    data: {query:query},
+                    dataType: 'json',
+                    success: function(data) {
+                        $('tbody').html(data.table_data);
+                    }
+                })
+            }
+
+            $('.search').on('keyup', function() {
+                var query = $(this).val();
+                fetch_data(query);
+                console.log(query)
+            });
+        });
+    </script>
+
     <!-- Argon Scripts -->
     <!-- Core -->
     <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>

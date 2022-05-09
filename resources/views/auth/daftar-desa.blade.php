@@ -53,6 +53,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="https://rawgit.com/select2/select2/master/dist/js/select2.js"></script>
     <link href="https://rawgit.com/select2/select2/master/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- LEAFLET -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
     <style>
         section {
@@ -143,7 +146,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Kabupaten<i class="text-danger text-sm text-bold">*</i></label>
+                                        <label class="form-control-label" for="input-email">Kabupaten/Kota<i class="text-danger text-sm text-bold">*</i></label>
                                         <select name="kabupaten" class="form-control" id="kabupaten" required>
                                         </select>
                                         </div>
@@ -192,6 +195,23 @@
                                         <input name="alamat_desa" class="form-control" placeholder="Alamat Kantor Desa" value="" type="text" required>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                        <label class="form-control-label" for="input-address">Latitude Desa Adat<i class="text-danger text-sm text-bold">*</i></label>
+                                        <input name="latitude" id="latitude" class="form-control" placeholder="Latitude Desa Adat" value="" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                        <label class="form-control-label" for="input-address">Longitude Desa Adat<i class="text-danger text-sm text-bold">*</i></label>
+                                        <input name="longitude" id="longitude" class="form-control" placeholder="Longitude Desa Adat" value="" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label>Peta Lokasi</label>
+                                        <label class="text-danger"><small>(Drag and Drop marker untuk menentukan posisi objek wisata)</small></label>
+                                        <div id="map" style="width: 100%; height: 400px; "></div>
+                                      </div>
                                     </div>
                                 </div>
                                 <hr class="my-4" />
@@ -242,6 +262,12 @@
                                             <div class="form-group">
                                             <label class="form-control-label" for="input-city">Luas Desa<span> m<sup>2</sup></span><i class="text-danger text-sm text-bold">*</i></label>
                                                 <input type="number" name="luas_desa" class="form-control" placeholder="Luas Desa" value="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group">
+                                            <label class="form-control-label" for="input-country">Aksara Bali Desa Adat<i class="text-danger text-sm text-bold">* File dalam format .jpg,jpeg,pdf (maksimal 3 MB)</i></label>
+                                            <input type="file" name="aksara_bali" class="form-control" placeholder="Aksara Bali Desa Adat" value="" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -527,7 +553,86 @@
         });
     </script>
 
+    <script>
+        var peta1 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+              '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+              'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11'
+        });
 
+        var peta2 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+              '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+              'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/satellite-v9'
+        });
+
+
+        var peta3 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var peta4 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+              '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+              'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/dark-v10'
+        });
+
+        var map = L.map('map', {
+          center: [-8.697037299217483, 115.22184375482351],
+          zoom: 20,
+          layers: [peta3],
+        });
+
+        var baseMaps = {
+            "Grayscale": peta1,
+            "Satellite": peta2,
+            "Streets": peta3,
+            "Dark": peta4,
+          };
+
+        L.control.layers(baseMaps).addTo(map);
+
+        //Get coordinate
+        var curLocation = [-8.40845089491575, 115.20058550393681];
+        map.attributionControl.setPrefix(false);
+
+        var marker = new L.marker(curLocation,{
+          draggable : 'true',
+        });
+
+        map.addLayer(marker);
+
+        //Ambil koordinat saat marker di drag
+        marker.on('dragend',function(event){
+          var position = marker.getLatLng();
+          marker.setLatLng(position, {
+            draggable : 'true',
+          }).bindPopup(position).update();
+          $("#latitude").val(position.lat).keyup();
+          $("#longitude").val(position.lng).keyup();
+        });
+
+        //Ambil koordinat saat marker diklik
+        var latitude = document.querySelector("[name=latitude]");
+        var longitude = document.querySelector("[name=longitude]");
+        map.on("click", function(event){
+          var lat = event.latlng.lat;
+          var lng = event.latlng.lng;
+
+          if (!marker){
+            marker = L.marker(event.latlng).addTo(map);
+          } else {
+            marker.setLatLng(event.latlng);
+          }
+
+          latitude.value = lat;
+          longitude.value = lng;
+
+        });
+    </script>
 
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>

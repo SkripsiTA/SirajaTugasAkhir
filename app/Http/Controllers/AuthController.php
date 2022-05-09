@@ -18,6 +18,7 @@ class AuthController extends Controller
 
         request()->validate(
             [
+                // 'nomor_telepon' => 'required',
                 'email' => 'required',
                 'password' => 'required',
             ]);
@@ -29,8 +30,10 @@ class AuthController extends Controller
                 return redirect('/admin');
             } elseif (auth()->user()->role == 'Bendesa') {
                 return redirect('/admin');
-            } elseif (auth()->user()->role == 'Kelian Banjar') {
-                return redirect('/banjar');
+            } elseif (auth()->user()->role == 'Penyarikan') {
+                return redirect('/admin');
+            } elseif (auth()->user()->role == 'Panitia') {
+                return redirect('/panitia');
             } else {
                 return redirect('/krama');
             }
