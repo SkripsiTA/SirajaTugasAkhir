@@ -40,6 +40,7 @@ class DashboardSuperadminController extends Controller
         if ($request->ajax()) {
             $output = '';
             $query = $request->get('query');
+            dd($query);
             if ($query != '') {
                 $data = DesaAdat::with(['kecamatan', 'user'])
                     ->where('desa_adat_id', 'like', '%'.$query.'%')
