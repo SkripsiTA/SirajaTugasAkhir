@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use DateTimeInterface;
 
 class SuratMasuk extends Model
 {
@@ -33,5 +35,15 @@ class SuratMasuk extends Model
     public function prajurudesaadat()
     {
         return $this->belongsTo(PrajuruDesaAdat::class, 'prajuru_desa_adat_id', 'prajuru_desa_adat_id');
+    }
+
+    protected function serializeDate(DateTimeInterface $date){
+        return $date->format('d-M-Y');
+    }
+
+    public function HapusSuratMasuk($id) {
+        DB::table('tb_surat_masuk')
+        ->where('surat_masuk_id', $id)
+        ->delete();
     }
 }

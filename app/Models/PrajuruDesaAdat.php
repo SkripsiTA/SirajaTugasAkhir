@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use DateTimeInterface;
 
 class PrajuruDesaAdat extends Model
 {
@@ -42,4 +44,24 @@ class PrajuruDesaAdat extends Model
     {
         return $this->hasMany(SuratMasuk::class);
     }
+
+    protected function serializeDate(DateTimeInterface $date) {
+        return $date->format('d-M-Y');
+      }
+
+      public function AddPrajuruDesaAdat($data) {
+        DB::table('tb_prajuru_desa_adat')->insert($data);
+      }
+
+      public function HapusPrajuruDesaAdat($id) {
+        DB::table('tb_prajuru_desa_adat')
+        ->where('prajuru_desa_adat_id', $id)
+        ->delete();
+      }
+
+      public function EditPrajuruDesaAdat($id, $data) {
+        DB::table('tb_prajuru_desa_adat')
+        ->where('prajuru_desa_adat_id', $id)
+        ->update($data);
+      }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DesaAdat extends Model
 {
@@ -57,5 +58,11 @@ class DesaAdat extends Model
     public function suratmasuk()
     {
         return $this->hasMany(SuratMasuk::class);
+    }
+
+    public function UpSejarahDesaAdat($id, $data) {
+        DB::table('tb_m_desa_adat')
+        ->where('desa_adat_id', $id)
+        ->update($data);
     }
 }

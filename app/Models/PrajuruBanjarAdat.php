@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use DateTimeInterface;
 
 class PrajuruBanjarAdat extends Model
 {
@@ -26,5 +28,25 @@ class PrajuruBanjarAdat extends Model
     {
         return $this->belongsTo(KramaMipil::class, 'krama_mipil_id', 'krama_mipil_id');
     }
+
+    protected function serializeDate(DateTimeInterface $date){
+        return $date->format('d-M-Y');
+      }
+
+      public function AddPrajuruBanjarAdat($data) {
+        DB::table('tb_prajuru_banjar_adat')->insert($data);
+      }
+
+      public function EditPrajuruBanjarAdat($id, $data) {
+        DB::table('tb_prajuru_banjar_adat')
+        ->where('prajuru_banjar_adat_id', $id)
+        ->update($data);
+      }
+
+      public function HapusPrajuruBanjarAdat($id) {
+        DB::table('tb_prajuru_banjar_adat')
+        ->where('prajuru_banjar_adat_id', $id)
+        ->delete();
+      }
 
 }

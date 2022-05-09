@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DateTimeInterface;
 
 class SuratKeluar extends Model
 {
@@ -53,6 +54,10 @@ class SuratKeluar extends Model
     public function validasiprajurudesa()
     {
         return $this->hasMany(ValidasiPrajuruDesa::class, 'surat_keluar_id', 'surat_keluar_id');
+    }
+
+    protected function serializeDate(DateTimeInterface $date){
+        return $date->format('d-M-Y');
     }
 }
 

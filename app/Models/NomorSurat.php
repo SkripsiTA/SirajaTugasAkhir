@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class NomorSurat extends Model
 {
@@ -29,5 +30,22 @@ class NomorSurat extends Model
     public function suratmasuk()
     {
         return $this->hasMany(SuratMasuk::class);
+    }
+
+    public function TambahNomorSurat($data) {
+        DB::table('tb_master_surat')
+        ->insert($data);
+    }
+
+    public function EditNomorSurat($data, $id) {
+        DB::table('tb_master_surat')
+        ->where('master_surat_id', $id)
+        ->update($data);
+    }
+
+    public function HapusNomorSurat($id) {
+        DB::table('tb_master_surat')
+        ->where('master_surat_id', $id)
+        ->delete();
     }
 }
